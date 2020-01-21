@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="connector_data_mapping">
+            <tab>ddg_automation</tab>
+            <group id="b2b_extra_data" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1"
+                   showInStore="0">
+                <label>B2B Data</label>
+                <field id="b2b_data_heading" translate="label" sortOrder="10" showInStore="0" showInWebsite="1"
+                       showInDefault="1">
+                    <label>B2B</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+                <field id="customer_type" translate="label" type="select" sortOrder="20" showInStore="0" showInWebsite="1"
+                       showInDefault="1">
+                    <label>Customer Type</label>
+                    <source_model>Dotdigitalgroup\Email\Model\Config\Source\Datamapping\Datafields</source_model>
+                </field>
+                <field id="company" translate="label" type="select" sortOrder="30" showInStore="0"
+                       showInWebsite="1" showInDefault="1">
+                    <label>Company</label>
+                    <source_model>Dotdigitalgroup\Email\Model\Config\Source\Datamapping\Datafields</source_model>
+                </field>
+                <field id="company_status" translate="label" type="select" sortOrder="40" showInStore="0"
+                       showInWebsite="1" showInDefault="1">
+                    <label>Company Status</label>
+                    <source_model>Dotdigitalgroup\Email\Model\Config\Source\Datamapping\Datafields</source_model>
+                </field>
+                <field id="store_credit_balance" translate="label" type="select" sortOrder="50" showInStore="0"
+                       showInWebsite="1" showInDefault="1">
+                    <label>Store Credit Balance</label>
+                    <source_model>Dotdigitalgroup\Email\Model\Config\Source\Datamapping\Datafields</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

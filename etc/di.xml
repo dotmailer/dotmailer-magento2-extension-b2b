@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Dotdigitalgroup\Email\Model\Connector\Datafield">
+        <plugin name="ddg_b2b_data_field_plugin"
+                type="Dotdigitalgroup\B2b\Plugin\DataFieldPlugin" sortOrder="1"/>
+    </type>
+    <type name="Dotdigitalgroup\Email\Model\Apiconnector\CustomerDataFieldProvider">
+        <plugin name="ddg_b2b_customer_datafield_provider_plugin"
+                type="Dotdigitalgroup\B2b\Plugin\CustomerDataFieldProviderPlugin"/>
+    </type>
+    <type name="Dotdigitalgroup\Email\Model\Apiconnector\Customer">
+        <plugin name="ddg_b2b_cusomter_plugin"
+                type="Dotdigitalgroup\B2b\Plugin\CustomerPlugin"/>
+    </type>
+</config>

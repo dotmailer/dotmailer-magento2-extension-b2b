@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="company_delete_after">
+        <observer name="ddg_b2b_company_delete" instance="Dotdigitalgroup\B2b\Observer\CompanyUpdated" />
+    </event>
+</config>

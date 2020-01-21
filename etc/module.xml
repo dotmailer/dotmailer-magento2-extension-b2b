@@ -3,6 +3,7 @@
     <module name="Dotdigitalgroup_B2b" setup_version="0.1">
         <sequence>
             <module name="Dotdigitalgroup_Email"/>
+            <module name="Magento_B2b"/>
         </sequence>
     </module>
 </config>
