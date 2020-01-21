@@ -1,0 +1,26 @@
+{
+  "name": "dotmailer/dotmailer-magento2-extension-b2b",
+  "description": "Engagement Cloud for Magento 2: B2B module",
+  "type": "magento2-module",
+  "version": "0.0.1",
+  "license": "MIT",
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://repo.magento.com/"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/magento/marketplace-eqp"
+    }
+  ],
+  "require": {
+    "dotmailer/dotmailer-magento2-extension": "^4.3.1"
+  },
+  "autoload": {
+    "files": [ "registration.php" ],
+    "psr-4": {
+      "Dotdigitalgroup\\B2b\\": ""
+    }
+  }
+}
