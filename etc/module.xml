@@ -6,6 +6,7 @@
             <module name="Magento_B2b"/>
             <module name="Magento_Customer" />
             <module name="Magento_Store" />
+            <module name="Magento_SharedCatalog"/>
         </sequence>
     </module>
 </config>
