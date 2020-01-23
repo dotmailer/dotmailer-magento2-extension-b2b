@@ -5,7 +5,7 @@ namespace Dotdigitalgroup\B2b\Helper;
 use Magento\Company\Api\Data\CompanyCustomerInterface;
 use Magento\Company\Api\Data\CompanyInterface;
 
-interface Config
+interface ConfigInterface
 {
     /*
      * Config paths for B2B data fields

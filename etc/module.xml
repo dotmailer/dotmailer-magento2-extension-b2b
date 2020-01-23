@@ -4,6 +4,8 @@
         <sequence>
             <module name="Dotdigitalgroup_Email"/>
             <module name="Magento_B2b"/>
+            <module name="Magento_Customer" />
+            <module name="Magento_Store" />
         </sequence>
     </module>
 </config>

@@ -51,5 +51,4 @@ class CompanyUpdated implements ObserverInterface
             $this->customerResource->getCustomerIdsByCompanyId($company->getId())
         );
     }
-
 }

@@ -2,7 +2,7 @@
 
 namespace Dotdigitalgroup\B2b\Plugin;
 
-use Dotdigitalgroup\B2b\Helper\Config;
+use Dotdigitalgroup\B2b\Helper\ConfigInterface;
 use Dotdigitalgroup\Email\Model\Connector\Datafield;
 
 class DataFieldPlugin
@@ -16,7 +16,7 @@ class DataFieldPlugin
      */
     public function beforeGetContactDatafields(Datafield $dataField)
     {
-        $dataField->setContactDatafields(Config::CONTACT_B2B_DATA_FIELDS, self::DATA_MAPPING_PATH_PREFIX);
+        $dataField->setContactDatafields(ConfigInterface::CONTACT_B2B_DATA_FIELDS, self::DATA_MAPPING_PATH_PREFIX);
         return null;
     }
 }
