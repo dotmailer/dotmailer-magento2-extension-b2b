@@ -24,6 +24,8 @@ class Config
     }
 
     /**
+     * Check if B2B Features > Shared Catalogs is set to Yes.
+     *
      * @param int $websiteId
      * @return bool
      */
@@ -37,15 +39,19 @@ class Config
     }
 
     /**
+     * Check if Sync Settings > Shared Catalog Enabled is set to Yes.
+     * Note that B2B Features > Shared Catalogs must also be enabled, so we check this as well.
+     *
      * @param int $websiteId
      * @return bool
      */
     public function isSharedCatalogSyncEnabled($websiteId = 0)
     {
-        return $this->scopeConfig->isSetFlag(
-            ConfigInterface::XML_PATH_CONNECTOR_SYNC_SHARED_CATALOG_ENABLED,
-            ScopeInterface::SCOPE_WEBSITES,
-            $websiteId
-        );
+        return $this->isSharedCatalogEnabled($websiteId)
+            && $this->scopeConfig->isSetFlag(
+                ConfigInterface::XML_PATH_CONNECTOR_SYNC_SHARED_CATALOG_ENABLED,
+                ScopeInterface::SCOPE_WEBSITES,
+                $websiteId
+            );
     }
 }
