@@ -12,4 +12,16 @@
         <plugin name="ddg_b2b_cusomter_plugin"
                 type="Dotdigitalgroup\B2b\Plugin\CustomerPlugin"/>
     </type>
+    <type name="Magento\SharedCatalog\Model\ResourceModel\ProductItem\Price\PriceProcessor">
+        <plugin name="ddg_b2b_shared_catalog_price_processor_plugin"
+                type="Dotdigitalgroup\B2b\Plugin\SharedCatalogPriceUpdatePlugin"/>
+    </type>
+    <type name="Magento\SharedCatalog\Model\ResourceModel\ProductItem\Price\Consumer">
+        <plugin name="ddg_b2b_shared_catalog_price_consumer_plugin"
+                type="Dotdigitalgroup\B2b\Plugin\SharedCatalogPriceUpdatePlugin"/>
+    </type>
+    <type name="Magento\SharedCatalog\Controller\Adminhtml\SharedCatalog\Configure\Save">
+        <plugin name="ddg_b2b_shared_catalog_save_configuration_plugin"
+                type="Dotdigitalgroup\B2b\Plugin\SharedCatalogSaveConfigurationPlugin"/>
+    </type>
 </config>
