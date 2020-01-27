@@ -44,10 +44,12 @@
                     <frontend_model>Dotdigitalgroup\B2b\Model\Config\Yesno</frontend_model>
                     <source_model>Dotdigitalgroup\B2b\Model\Config\Source\Yesno</source_model>
                     <comment model="Dotdigitalgroup\B2b\Model\Config\YesnoComment" />
+                    <depends><field id="catalog_enabled">1</field></depends>
                 </field>
                 <field id="shared_catalog_report" type="button" sortOrder="180" showInDefault="1" showInStore="0"
                        showInWebsite="1">
                     <frontend_model>Dotdigitalgroup\B2b\Block\Adminhtml\Config\Report\SharedCatalog</frontend_model>
+                    <depends><field id="catalog_enabled">1</field></depends>
                 </field>
             </group>
         </section>
