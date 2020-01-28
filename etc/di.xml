@@ -9,9 +9,12 @@
                 type="Dotdigitalgroup\B2b\Plugin\CustomerDataFieldProviderPlugin"/>
     </type>
     <type name="Dotdigitalgroup\Email\Model\Apiconnector\Customer">
-        <plugin name="ddg_b2b_cusomter_plugin"
+        <plugin name="ddg_b2b_customer_plugin"
                 type="Dotdigitalgroup\B2b\Plugin\CustomerPlugin"/>
     </type>
+    <type name="Dotdigitalgroup\Email\Model\Sync\Catalog\StoreCatalogSyncer">
+        <plugin name="ddg_b2b_store_catalog_syncer_plugin"
+                type="Dotdigitalgroup\B2b\Plugin\StoreCatalogSyncerPlugin"/>
     <type name="Magento\SharedCatalog\Model\ResourceModel\ProductItem\Price\PriceProcessor">
         <plugin name="ddg_b2b_shared_catalog_price_processor_plugin"
                 type="Dotdigitalgroup\B2b\Plugin\SharedCatalogPriceUpdatePlugin"/>
