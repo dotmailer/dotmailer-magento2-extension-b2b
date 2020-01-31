@@ -94,7 +94,7 @@ class StoreCatalogSyncerPlugin
                 continue;
             }
 
-            $products = $this->exporter->exportCatalog($storeId, $productsToProcessFromCatalog);
+            $products = $this->exporter->exportCatalog($storeId, $productsToProcessFromCatalog, 'B2b');
 
             if ($products) {
                 $success = $this->importerFactory->create()

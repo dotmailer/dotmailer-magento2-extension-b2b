@@ -16,6 +16,9 @@
         <plugin name="ddg_b2b_store_catalog_syncer_plugin"
                 type="Dotdigitalgroup\B2b\Plugin\StoreCatalogSyncerPlugin"/>
     </type>
+    <type name="Dotdigitalgroup\Email\Model\Connector\PriceFinder">
+        <plugin name="ddg_b2b_price_finder_plugin"
+                type="Dotdigitalgroup\B2b\Plugin\PriceFinderPlugin"/>
     <type name="Magento\SharedCatalog\Model\ResourceModel\ProductItem\Price\PriceProcessor">
         <plugin name="ddg_b2b_shared_catalog_price_processor_plugin"
                 type="Dotdigitalgroup\B2b\Plugin\SharedCatalogPriceUpdatePlugin"/>
