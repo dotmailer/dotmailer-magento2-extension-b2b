@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="SharedCatalogSyncIsConfigurableTest">
+        <annotations>
+            <features value="Engagement Cloud B2B module"/>
+            <stories value="Configure shared catalog sync"/>
+            <title value="Shared catalog sync is configurable"/>
+            <description value="Confirm that shared catalog sync can be enabled."/>
+            <severity value="AVERAGE"/>
+            <group value="dotdigitalB2b"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin"/>
+        </before>
+
+        <after>
+            <actionGroup ref="ResetSharedCatalogConfig" stepKey="resetConfigAfter"/>
+            <actionGroup ref="logout" stepKey="logout"/>
+        </after>
+
+        <!-- Go to Stores > General > B2B Features -->
+        <amOnPage url="{{AdminB2BConfigPage.url}}" stepKey="amOnB2BConfigPage"/>
+        <waitForPageLoad stepKey="waitForPageLoad"/>
+
+        <!-- Activate Company and Shared Catalog -->
+        <selectOption selector="{{AdminB2BConfigSection.company}}" userInput="{{companyActive.value}}" stepKey="enableCompany"/>
+        <selectOption selector="{{AdminB2BConfigSection.sharedCatalog}}" userInput="{{sharedCatalogActive.value}}" stepKey="enableSharedCatalog"/>
+        <click selector="{{AdminMainActionsSection.save}}" stepKey="clickSaveConfig"/>
+
+        <!-- Go to dotdigital Sync Settings -->
+        <amOnPage url="{{AdminDotdigitalSyncSettingsPage.url}}" stepKey="amOnSyncSettingsPage"/>
+        <waitForPageLoad stepKey="waitForLoadSyncSettings"/>
+        <seeElement selector="{{DotdigitalB2BSyncSettingsSection.sharedCatalogEnabledInDisabledState}}" stepKey="seeDisabledSharedCatalogSyncSelect"/>
+
+        <!-- Enable Catalog sync to access Shared Catalog sync select -->
+        <selectOption selector="{{AdminDotdigitalSyncSettingsSection.catalogEnabled}}" userInput="Yes" stepKey="enableCatalogSync"/>
+        <click selector="{{AdminDotdigitalSyncSettingsSection.save}}" stepKey="saveConfig1" />
+        <waitForPageLoad stepKey="waitForSave1"/>
+        <seeElement selector="{{DotdigitalB2BSyncSettingsSection.sharedCatalogEnabled}}" stepKey="seeSharedCatalogSyncSelect"/>
+
+        <!-- Enable Shared Catalog sync and save -->
+        <selectOption selector="{{DotdigitalB2BSyncSettingsSection.sharedCatalogEnabled}}" userInput="Yes" stepKey="enableSharedCatalogSync"/>
+        <click selector="{{AdminDotdigitalSyncSettingsSection.save}}" stepKey="saveConfig2" />
+        <waitForPageLoad stepKey="waitForSave2"/>
+        <see userInput="You saved the configuration." selector="div[data-ui-id='messages-message-success']" stepKey="seeSuccessMessage"/>
+    </test>
+</tests>

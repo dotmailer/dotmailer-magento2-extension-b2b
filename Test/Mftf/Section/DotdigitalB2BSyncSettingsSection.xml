@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
+    <section name="DotdigitalB2BSyncSettingsSection">
+        <element name="sharedCatalogEnabled" type="select" selector="#sync_settings_sync_shared_catalog_enabled" />
+        <element name="sharedCatalogEnabledInDisabledState" type="select" selector="#sync_settings_sync_shared_catalog_enabled[disabled]" />
+        <element name="sharedCatalogSelectNote" type="text" selector="#row_sync_settings_sync_shared_catalog_enabled .note" />
+    </section>
+</sections>

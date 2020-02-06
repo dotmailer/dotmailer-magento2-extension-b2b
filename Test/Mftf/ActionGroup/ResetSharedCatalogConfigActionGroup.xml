@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
+    <actionGroup name="ResetSharedCatalogConfig">
+        <amOnPage url="{{AdminDotdigitalSyncSettingsPage.url}}" stepKey="amOnSyncSettingsPage"/>
+        <waitForPageLoad stepKey="waitForPageLoad"/>
+
+        <comment userInput="Resetting config" stepKey="resettingConfig"/>
+
+        <magentoCLI command="config:set btob/website_configuration/sharedcatalog_active 0" stepKey="disableSharedCatalog"/>
+        <magentoCLI command="config:set sync_settings/sync/catalog_enabled 0" stepKey="disableCatalogSync"/>
+        <magentoCLI command="config:set sync_settings/sync/shared_catalog_enabled 0" stepKey="disableSharedCatalogSync"/>
+    </actionGroup>
+</actionGroups>

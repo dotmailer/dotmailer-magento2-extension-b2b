@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="SharedCatalogSyncIsNotConfigurableTest">
+        <annotations>
+            <features value="Engagement Cloud B2B module"/>
+            <stories value="Configure shared catalog sync"/>
+            <title value="Shared catalog sync is not configurable"/>
+            <description value="Confirm that shared catalog sync cannot be enabled without its required dependent settings."/>
+            <severity value="AVERAGE"/>
+            <group value="dotdigitalB2b"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="loginAsAdmin"/>
+        </before>
+
+        <after>
+            <actionGroup ref="ResetSharedCatalogConfig" stepKey="resetConfigAfter"/>
+            <actionGroup ref="logout" stepKey="logout"/>
+        </after>
+
+        <!-- Go to Stores > General > B2B Features -->
+        <amOnPage url="{{AdminB2BConfigPage.url}}" stepKey="amOnB2BConfigPage"/>
+        <waitForPageLoad stepKey="waitForPageLoad"/>
+
+        <!-- Activate Company but keep Shared Catalog disabled -->
+        <selectOption selector="{{AdminB2BConfigSection.company}}" userInput="{{companyActive.value}}" stepKey="enableCompany"/>
+        <selectOption selector="{{AdminB2BConfigSection.sharedCatalog}}" userInput="No" stepKey="disableSharedCatalog"/>
+        <click selector="{{AdminMainActionsSection.save}}" stepKey="clickSaveConfig"/>
+
+        <!-- Go to dotdigital Sync Settings and see message beneath disabled Shared catalog sync -->
+        <amOnPage url="{{AdminDotdigitalSyncSettingsPage.url}}" stepKey="amOnSyncSettingsPage"/>
+        <waitForPageLoad stepKey="waitForLoadSyncSettings"/>
+        <seeElement selector="{{DotdigitalB2BSyncSettingsSection.sharedCatalogEnabledInDisabledState}}" stepKey="seeDisabledSharedCatalogSyncSelect"/>
+        <seeElement selector="{{DotdigitalB2BSyncSettingsSection.sharedCatalogSelectNote}}" stepKey="seeSharedCatalogSyncNote1"/>
+
+        <!-- Turn on regular catalog sync and continue to see message beneath disabled Shared catalog sync -->
+        <selectOption selector="{{AdminDotdigitalSyncSettingsSection.catalogEnabled}}" userInput="Yes" stepKey="enableCatalogSync"/>
+        <click selector="{{AdminDotdigitalSyncSettingsSection.save}}" stepKey="saveConfig" />
+        <waitForPageLoad stepKey="waitForSave"/>
+        <seeElement selector="{{DotdigitalB2BSyncSettingsSection.sharedCatalogEnabledInDisabledState}}" stepKey="seeSharedCatalogSyncSelect"/>
+        <seeElement selector="{{DotdigitalB2BSyncSettingsSection.sharedCatalogSelectNote}}" stepKey="seeSharedCatalogSyncNote2"/>
+    </test>
+</tests>
