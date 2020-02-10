@@ -42,10 +42,31 @@ class YesnoComment extends AbstractBlock implements CommentInterface
     public function getCommentText($elementValue)
     {
         $currentWebsite = $this->emailHelper->getWebsiteForSelectedScopeInAdmin();
-        if (!$this->sharedCatalogConfig->isSharedCatalogEnabled($currentWebsite->getId())) {
+        $catalogSyncEnabledForScope = $this->emailHelper->isCatalogSyncEnabled($currentWebsite->getId());
+        $sharedCatalogSyncEnabledForScope = $this->sharedCatalogConfig->isSharedCatalogEnabled(
+            $currentWebsite->getId()
+        );
+
+        if ($sharedCatalogSyncEnabledForScope && $catalogSyncEnabledForScope) {
+            return null;
+        }
+
+        $comment = "Please ";
+
+        if (!$sharedCatalogSyncEnabledForScope) {
             $websitePath = $currentWebsite->getId() != 0 ? '/website/' . $currentWebsite->getId() : '';
             $url = $this->_urlBuilder->getUrl('adminhtml/system_config/edit/section/btob' . $websitePath);
-            return "Click <a href='$url'>here</a> to enable Shared Catalog";
+            $comment .= "<a href='$url'>enable Shared Catalog</a>";
         }
+        if (!$sharedCatalogSyncEnabledForScope && !$catalogSyncEnabledForScope) {
+            $comment .= " and";
+        }
+        if (!$catalogSyncEnabledForScope) {
+            $comment .= " enable regular catalog sync";
+        }
+
+        $comment .= ".";
+
+        return $comment;
     }
 }

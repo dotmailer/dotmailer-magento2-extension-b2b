@@ -3,6 +3,7 @@
 namespace Dotdigitalgroup\B2b\Model\Config;
 
 use Dotdigitalgroup\B2b\Model\SharedCatalog\Config;
+use Dotdigitalgroup\Email\Helper\Data as EmailHelper;
 use Magento\Backend\Block\Template\Context;
 
 class Yesno extends \Magento\Config\Block\System\Config\Form\Field
@@ -13,17 +14,25 @@ class Yesno extends \Magento\Config\Block\System\Config\Form\Field
     private $sharedCatalogConfig;
 
     /**
+     * @var EmailHelper
+     */
+    private $emailHelper;
+
+    /**
      * Yesno constructor.
      * @param Context $context
      * @param Config $sharedCatalogConfig
+     * @param EmailHelper $emailHelper
      * @param array $data
      */
     public function __construct(
         Context $context,
         Config $sharedCatalogConfig,
+        EmailHelper $emailHelper,
         array $data = []
     ) {
         $this->sharedCatalogConfig = $sharedCatalogConfig;
+        $this->emailHelper = $emailHelper;
         parent::__construct($context, $data);
     }
 
@@ -35,8 +44,10 @@ class Yesno extends \Magento\Config\Block\System\Config\Form\Field
     public function _getElementHtml(
         \Magento\Framework\Data\Form\Element\AbstractElement $element
     ) {
-        if (!$this->sharedCatalogConfig->isSharedCatalogEnabled()) {
-            $element->setData('disabled', 1);
+        $currentWebsite = $this->emailHelper->getWebsiteForSelectedScopeInAdmin();
+        if (!$this->sharedCatalogConfig->isSharedCatalogEnabled($currentWebsite->getId())
+            || !$this->emailHelper->isCatalogSyncEnabled($currentWebsite->getId())) {
+            $element->setData('disabled', 'disabled');
         }
 
         return parent::_getElementHtml($element);
