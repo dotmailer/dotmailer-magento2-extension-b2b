@@ -97,16 +97,18 @@ class StoreCatalogSyncerPlugin
             $products = $this->exporter->exportCatalog($storeId, $productsToProcessFromCatalog, 'B2b');
 
             if ($products) {
+                $sharedCatalogImportType = $importType . '_' . str_replace(' ', '_', $catalog['name']);
+
                 $success = $this->importerFactory->create()
                     ->registerQueue(
-                        $importType . '_' . str_replace(' ', '_', $catalog['name']),
+                        $sharedCatalogImportType,
                         $products,
                         \Dotdigitalgroup\Email\Model\Importer::MODE_BULK,
                         $websiteId
                     );
 
                 if ($success) {
-                    $msg = 'Shared catalog ' . $importType . ' registered with Importer';
+                    $msg = 'Shared catalog ' . $sharedCatalogImportType . ' registered with Importer';
                     $this->logger->info($msg);
                 }
             }
