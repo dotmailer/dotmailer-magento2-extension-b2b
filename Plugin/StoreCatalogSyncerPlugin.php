@@ -7,6 +7,7 @@ use Dotdigitalgroup\Email\Model\Sync\Catalog\Exporter;
 use Dotdigitalgroup\Email\Model\ImporterFactory;
 use Dotdigitalgroup\Email\Logger\Logger;
 use Dotdigitalgroup\B2b\Model\SharedCatalog\Catalog;
+use Dotdigitalgroup\Email\Model\Sync\Catalog\SyncContextService;
 
 class StoreCatalogSyncerPlugin
 {
@@ -47,13 +48,15 @@ class StoreCatalogSyncerPlugin
         Exporter $exporter,
         ImporterFactory $importerFactory,
         Logger $logger,
-        Catalog $catalog
+        Catalog $catalog,
+        SyncContextService $contextService
     ) {
         $this->sharedCatalogConfig = $sharedCatalogConfig;
         $this->exporter = $exporter;
         $this->importerFactory = $importerFactory;
         $this->logger = $logger;
         $this->catalog = $catalog;
+        $this->contextService = $contextService;
     }
 
     /**
@@ -78,10 +81,12 @@ class StoreCatalogSyncerPlugin
             return $result;
         }
 
+        $this->contextService->setModule('B2b');
         $sharedCatalogs = $this->catalog->getSharedCatalogList();
         $skusToProcess = $this->catalog->getSkusToProcess($productsToProcess);
 
         foreach ($sharedCatalogs as $catalog) {
+            $this->contextService->setCustomerGroupId($catalog['customer_group_id']);
 
             $productItems = $this->catalog->getProductsItemsInSharedCatalog(
                 $skusToProcess,
@@ -94,7 +99,7 @@ class StoreCatalogSyncerPlugin
                 continue;
             }
 
-            $products = $this->exporter->exportCatalog($storeId, $productsToProcessFromCatalog, 'B2b');
+            $products = $this->exporter->exportCatalog($storeId, $productsToProcessFromCatalog);
 
             if ($products) {
                 $sharedCatalogImportType = $importType . '_' . str_replace(' ', '_', $catalog['name']);
