@@ -8,6 +8,7 @@ use Dotdigitalgroup\Email\Model\ImporterFactory;
 use Dotdigitalgroup\Email\Logger\Logger;
 use Dotdigitalgroup\B2b\Model\SharedCatalog\Catalog;
 use Dotdigitalgroup\Email\Model\Sync\Catalog\SyncContextService;
+use Dotdigitalgroup\Email\Model\Connector\KeyValidator;
 
 class StoreCatalogSyncerPlugin
 {
@@ -37,11 +38,18 @@ class StoreCatalogSyncerPlugin
     private $catalog;
 
     /**
+     * @var KeyValidator
+     */
+    private $validator;
+
+    /**
      * @param Config $sharedCatalogConfig
      * @param Exporter $exporter
      * @param ImporterFactory $importerFactory
      * @param Logger $logger
      * @param Catalog $catalog
+     * @param SyncContextService $contextService
+     * @param KeyValidator $keyValidator
      */
     public function __construct(
         Config $sharedCatalogConfig,
@@ -49,7 +57,8 @@ class StoreCatalogSyncerPlugin
         ImporterFactory $importerFactory,
         Logger $logger,
         Catalog $catalog,
-        SyncContextService $contextService
+        SyncContextService $contextService,
+        KeyValidator $keyValidator
     ) {
         $this->sharedCatalogConfig = $sharedCatalogConfig;
         $this->exporter = $exporter;
@@ -57,6 +66,7 @@ class StoreCatalogSyncerPlugin
         $this->logger = $logger;
         $this->catalog = $catalog;
         $this->contextService = $contextService;
+        $this->validator = $keyValidator;
     }
 
     /**
@@ -102,7 +112,8 @@ class StoreCatalogSyncerPlugin
             $products = $this->exporter->exportCatalog($storeId, $productsToProcessFromCatalog);
 
             if ($products) {
-                $sharedCatalogImportType = $importType . '_' . str_replace(' ', '_', $catalog['name']);
+                $cleanSharedCatalogName = $this->validator->cleanLabel($catalog['name'], '_');
+                $sharedCatalogImportType = $importType . '_' . $cleanSharedCatalogName;
 
                 $success = $this->importerFactory->create()
                     ->registerQueue(
