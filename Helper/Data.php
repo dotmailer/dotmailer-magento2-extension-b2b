@@ -32,6 +32,8 @@ class Data extends AbstractHelper
     /**
      * @param Context $context
      * @param EmailHelper $emailHelper
+     * @param CompanyManagementInterface $companyRepository
+     * @param CreditDataProviderInterface $creditDataProvider
      */
     public function __construct(
         Context $context,

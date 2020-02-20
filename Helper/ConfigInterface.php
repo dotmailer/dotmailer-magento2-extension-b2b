@@ -40,6 +40,11 @@ interface ConfigInterface
             'type' => 'numeric',
             'visibility' => 'private'
         ],
+        'shared_catalog_name' => [
+            'name' => 'SHARED_CATALOG_NAME',
+            'type' => 'string',
+            'visibility' => 'private',
+        ],
     ];
 
     /**
@@ -52,10 +57,12 @@ interface ConfigInterface
         CompanyInterface::STATUS_REJECTED => 'Rejected',
     ];
 
-    /**
+    /*
      * Customer type value labels
      */
     const CUSTOMER_TYPE_COMPANY_ADMIN ='Company admin';
     const CUSTOMER_TYPE_COMPANY_USER = 'Company user';
     const CUSTOMER_TYPE_INDIVIDUAL_USER = 'Individual user';
+
+    const SHARED_CATALOG_NAME_DEFAULT = 'Default';
 }

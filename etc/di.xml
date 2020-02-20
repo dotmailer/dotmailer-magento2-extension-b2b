@@ -32,4 +32,16 @@
         <plugin name="ddg_b2b_shared_catalog_save_configuration_plugin"
                 type="Dotdigitalgroup\B2b\Plugin\SharedCatalogSaveConfigurationPlugin"/>
     </type>
+    <type name="Magento\SharedCatalog\Model\SharedCatalogBuilder">
+        <plugin name="ddg_b2b_shared_catalog_builder_plugin"
+                type="Dotdigitalgroup\B2b\Plugin\SharedCatalogUpdatePlugin"/>
+    </type>
+    <type name="Magento\SharedCatalog\Model\Repository">
+        <plugin name="ddg_b2b_shared_catalog_repository_plugin"
+                type="Dotdigitalgroup\B2b\Plugin\SharedCatalogUpdatePlugin"/>
+    </type>
+    <type name="Magento\SharedCatalog\Controller\Adminhtml\SharedCatalog\Company\Assign">
+        <plugin name="ddg_b2b_shared_catalog_company_assign_plugin"
+                type="Dotdigitalgroup\B2b\Plugin\SharedCatalogCompanyAssignPlugin"/>
+    </type>
 </config>
