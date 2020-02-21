@@ -33,7 +33,7 @@ class TierPriceFinderPlugin
     }
 
     public function aroundGetTierPrices(
-        \Dotdigitalgroup\Email\Model\Connector\TierPriceFinder $priceFinder,
+        \Dotdigitalgroup\Email\Model\Product\TierPriceFinder $priceFinder,
         callable $proceed,
         $product
     ) {
@@ -67,8 +67,8 @@ class TierPriceFinderPlugin
             $count = 0;
             foreach ($this->getTierPricesKeys($product) as $pointer) {
                 $tierPrices = $product->getTierPrices()[$pointer];
-                $finalPrice = $tierPrices->getData()['value'];
-                $quantity = (int)$tierPrices->getData()['qty'];
+                $finalPrice = $tierPrices->getData('value');
+                $quantity = (int)$tierPrices->getData('qty');
                 $percentage = $tierPrices->getExtensionAttributes()
                     ->getPercentageValue();
                 $type = $this->getPercentageType($percentage);
@@ -89,7 +89,7 @@ class TierPriceFinderPlugin
                 continue;
             }
             //Assume all children(simple) will have the same tier price. So just grab the first
-            return $this->getTierPriceOfSimpleProduct($childProduct);
+            return $this->getTierPricesOfSimpleProduct($childProduct);
         }
     }
 
@@ -106,8 +106,8 @@ class TierPriceFinderPlugin
         $count = 0;
         foreach ($this->getTierPricesKeys($product) as $pointer) {
             $tierPrices = $product->getTierPrices()[$pointer];
-            $percentage = $tierPrices->getData()['extension_attributes']->getPercentageValue();
-            $quantity = (int)$tierPrices->getData()['qty'];
+            $percentage = $tierPrices->getData('extension_attributes')->getPercentageValue();
+            $quantity = (int)$tierPrices->getData('qty');
             $type = $this->getPercentageType($percentage);
             $tempArr = [];
             $price = [];
@@ -135,7 +135,7 @@ class TierPriceFinderPlugin
     {
         $pointers = [];
         foreach ($product->getTierPrices() as $key => $prices) {
-            if ($prices->getData()['customer_group_id'] == $this->contextService->getCustomerGroupId()) {
+            if ($prices->getData('customer_group_id') == $this->contextService->getCustomerGroupId()) {
                 $pointers[] = $key;
             }
         }

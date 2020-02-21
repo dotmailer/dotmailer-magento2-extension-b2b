@@ -43,6 +43,11 @@ class StoreCatalogSyncerPlugin
     private $validator;
 
     /**
+     * @var SyncContextService
+     */
+    private $contextService;
+
+    /**
      * @param Config $sharedCatalogConfig
      * @param Exporter $exporter
      * @param ImporterFactory $importerFactory

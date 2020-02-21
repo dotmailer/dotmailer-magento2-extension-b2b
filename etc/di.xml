@@ -16,7 +16,7 @@
         <plugin name="ddg_b2b_store_catalog_syncer_plugin"
                 type="Dotdigitalgroup\B2b\Plugin\StoreCatalogSyncerPlugin"/>
     </type>
-    <type name="Dotdigitalgroup\Email\Model\Connector\TierPriceFinder">
+    <type name="Dotdigitalgroup\Email\Model\Product\TierPriceFinder">
         <plugin name="ddg_b2b_price_finder_plugin"
                 type="Dotdigitalgroup\B2b\Plugin\TierPriceFinderPlugin"/>
     </type>
