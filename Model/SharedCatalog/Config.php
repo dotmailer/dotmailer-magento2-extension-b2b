@@ -24,7 +24,7 @@ class Config
     }
 
     /**
-     * Check if B2B Features > Shared Catalogs is set to Yes.
+     * Check if B2B Features > Enable Shared Catalog is set to Yes.
      *
      * @param int $websiteId
      * @return bool

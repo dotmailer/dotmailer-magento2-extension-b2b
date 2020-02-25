@@ -4,6 +4,7 @@
         <sync_settings>
             <sync>
                 <shared_catalog_enabled>0</shared_catalog_enabled>
+                <quote_enabled>0</quote_enabled>
             </sync>
         </sync_settings>
     </default>

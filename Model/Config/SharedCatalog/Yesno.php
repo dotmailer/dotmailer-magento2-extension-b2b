@@ -1,6 +1,6 @@
 <?php
 
-namespace Dotdigitalgroup\B2b\Model\Config;
+namespace Dotdigitalgroup\B2b\Model\Config\SharedCatalog;
 
 use Dotdigitalgroup\B2b\Model\SharedCatalog\Config;
 use Dotdigitalgroup\Email\Helper\Data as EmailHelper;

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="email_b2b_quote" resource="default" engine="innodb" comment="Dotdigital B2B Quote table">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Primary key"/>
+        <column xsi:type="int" name="quote_id" padding="10" unsigned="true" nullable="false"
+                identity="false" comment="Quote entity ID"/>
+        <column xsi:type="smallint" name="website_id" unsigned="true" nullable="false" padding="5" default="0" comment="Website ID"/>
+        <column xsi:type="smallint" name="quote_imported" unsigned="true" nullable="false" padding="5" default="0" comment="Quote imported"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="false" nullable="true" comment="Update time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="EMAIL_B2B_QUOTE_QUOTE_ID_NEGOTIABLE_QUOTE_QUOTE_ID" table="email_b2b_quote" column="quote_id" referenceTable="negotiable_quote" referenceColumn="quote_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="EMAIL_B2B_QUOTE_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID" table="email_b2b_quote" column="website_id" referenceTable="store_website" referenceColumn="website_id" onDelete="CASCADE"/>
+        <index referenceId="EMAIL_B2B_QUOTE_QUOTE_ID">
+            <column name="quote_id"/>
+        </index>
+        <index referenceId="EMAIL_B2B_QUOTE_WEBSITE_ID">
+            <column name="website_id"/>
+        </index>
+        <index referenceId="EMAIL_B2B_QUOTE_QUOTE_IMPORTED">
+            <column name="quote_imported"/>
+        </index>
+    </table>
+</schema>

@@ -15,6 +15,7 @@ interface ConfigInterface
     const XML_PATH_CONNECTOR_B2B_COMPANY_STATUS = 'connector_data_mapping/b2b_extra_data/company_status';
     const XML_PATH_CONNECTOR_B2B_STORE_CREDIT_BALANCE = 'connector_data_mapping/b2b_extra_data/store_credit_balance';
     const XML_PATH_CONNECTOR_SYNC_SHARED_CATALOG_ENABLED = 'sync_settings/sync/shared_catalog_enabled';
+    const XML_PATH_CONNECTOR_SYNC_QUOTE_ENABLED = 'sync_settings/sync/quote_enabled';
 
     /**
      * Map of B2B config fields to EC data fields

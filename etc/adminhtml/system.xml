@@ -43,12 +43,33 @@
             <group id="sync" translate="label" type="text" sortOrder="30" showInDefault="1" showInStore="0" showInWebsite="1">
                 <field id="shared_catalog_enabled" type="select" sortOrder="160" showInDefault="1" showInStore="0" showInWebsite="1">
                     <label>Shared Catalog Enabled</label>
-                    <frontend_model>Dotdigitalgroup\B2b\Model\Config\Yesno</frontend_model>
+                    <frontend_model>Dotdigitalgroup\B2b\Model\Config\SharedCatalog\Yesno</frontend_model>
                     <source_model>Dotdigitalgroup\B2b\Model\Config\Source\Yesno</source_model>
-                    <comment model="Dotdigitalgroup\B2b\Model\Config\YesnoComment" />
+                    <comment model="Dotdigitalgroup\B2b\Model\Config\SharedCatalog\Comment" />
                 </field>
                 <field id="shared_catalog_report" type="button" sortOrder="180" showInDefault="1" showInStore="0" showInWebsite="1">
                     <frontend_model>Dotdigitalgroup\B2b\Block\Adminhtml\Config\Report\SharedCatalog</frontend_model>
+                </field>
+                <field id="quote_enabled" type="select" sortOrder="190" showInDefault="1" showInStore="0" showInWebsite="1">
+                    <label>B2B Quote Enabled</label>
+                    <frontend_model>Dotdigitalgroup\B2b\Model\Config\NegotiableQuote\Yesno</frontend_model>
+                    <source_model>Dotdigitalgroup\B2b\Model\Config\Source\Yesno</source_model>
+                    <comment model="Dotdigitalgroup\B2b\Model\Config\NegotiableQuote\Comment" />
+                </field>
+                <field id="quote_report" type="button" sortOrder="200" showInDefault="1" showInStore="0" showInWebsite="1">
+                    <frontend_model>Dotdigitalgroup\B2b\Block\Adminhtml\Config\Report\Quote</frontend_model>
+                </field>
+            </group>
+        </section>
+        <section id="connector_developer_settings" translate="label" sortOrder="500" showInStore="0" showInWebsite="1"
+                 showInDefault="1">
+            <tab>ddg_automation</tab>
+            <group id="sync_settings" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1"
+                   showInStore="0">
+                <field id="reset_quotes" translate="label" sortOrder="300" showInStore="0" showInWebsite="1"
+                       showInDefault="1">
+                    <label>Reset B2B Quotes</label>
+                    <frontend_model>Dotdigitalgroup\B2b\Block\Adminhtml\Config\Developer\Resetquotes</frontend_model>
                 </field>
             </group>
         </section>

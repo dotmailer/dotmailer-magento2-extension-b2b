@@ -1,0 +1,23 @@
+{
+    "email_b2b_quote": {
+        "column": {
+            "id": true,
+            "quote_id": true,
+            "website_id": true,
+            "quote_imported": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "EMAIL_B2B_QUOTE_QUOTE_ID": true,
+            "EMAIL_B2B_QUOTE_WEBSITE_ID": true,
+            "EMAIL_B2B_QUOTE_QUOTE_IMPORTED": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "EMAIL_B2B_QUOTE_QUOTE_ID_QUOTE_ENTITY_ID": true,
+            "EMAIL_B2B_QUOTE_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID": true,
+            "EMAIL_B2B_QUOTE_QUOTE_ID_NEGOTIABLE_QUOTE_QUOTE_ID": true
+        }
+    }
+}

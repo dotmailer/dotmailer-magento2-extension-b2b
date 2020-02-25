@@ -32,6 +32,18 @@
         <plugin name="ddg_b2b_shared_catalog_save_configuration_plugin"
                 type="Dotdigitalgroup\B2b\Plugin\SharedCatalogSaveConfigurationPlugin"/>
     </type>
+    <type name="Magento\NegotiableQuote\Model\NegotiableQuoteRepository">
+        <plugin name="ddg_b2b_store_negotiable_quote_repository_plugin"
+                type="Dotdigitalgroup\B2b\Plugin\NegotiableQuotePlugin"/>
+    </type>
+    <type name="Dotdigitalgroup\Email\Setup\Install\DataMigrationTypeProvider">
+        <plugin name="ddg_b2b_data_migration_type_provider_plugin"
+                type="Dotdigitalgroup\B2b\Plugin\DataMigrationTypeProviderPlugin"/>
+    </type>
+    <type name="Dotdigitalgroup\Email\Console\Command\Provider\SyncProvider">
+        <plugin name="ddg_b2b_sync_provider_plugin"
+                type="Dotdigitalgroup\B2b\Plugin\SyncProviderPlugin"/>
+    </type>
     <type name="Magento\SharedCatalog\Model\SharedCatalogBuilder">
         <plugin name="ddg_b2b_shared_catalog_builder_plugin"
                 type="Dotdigitalgroup\B2b\Plugin\SharedCatalogUpdatePlugin"/>
@@ -44,4 +56,17 @@
         <plugin name="ddg_b2b_shared_catalog_company_assign_plugin"
                 type="Dotdigitalgroup\B2b\Plugin\SharedCatalogCompanyAssignPlugin"/>
     </type>
+    <type name="Dotdigitalgroup\Email\Model\Sync\Importer\ImporterQueueManager">
+        <plugin name="ddg_b2b_importer_queue_manager_plugin"
+                type="Dotdigitalgroup\B2b\Plugin\ImporterQueueManagerPlugin"/>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="b2b_quote_report_grid_data_source" xsi:type="string">Dotdigitalgroup\B2b\Ui\Model\ResourceModel\NegotiableQuote\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="Dotdigitalgroup\B2b\Api\NegotiableQuoteRepositoryInterface" type="Dotdigitalgroup\B2b\Model\NegotiableQuoteRepository" />
+    <preference for="Dotdigitalgroup\B2b\Api\Data\NegotiableQuoteInterface" type="Dotdigitalgroup\B2b\Model\NegotiableQuote" />
 </config>

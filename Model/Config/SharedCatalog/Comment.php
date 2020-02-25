@@ -1,6 +1,6 @@
 <?php
 
-namespace Dotdigitalgroup\B2b\Model\Config;
+namespace Dotdigitalgroup\B2b\Model\Config\SharedCatalog;
 
 use Magento\Framework\View\Element\AbstractBlock;
 use Magento\Config\Model\Config\CommentInterface;
@@ -8,7 +8,7 @@ use Magento\Backend\Block\Template\Context;
 use Dotdigitalgroup\B2b\Model\SharedCatalog\Config;
 use Dotdigitalgroup\Email\Helper\Data as EmailHelper;
 
-class YesnoComment extends AbstractBlock implements CommentInterface
+class Comment extends AbstractBlock implements CommentInterface
 {
     /**
      * @var Config
@@ -21,7 +21,7 @@ class YesnoComment extends AbstractBlock implements CommentInterface
     private $emailHelper;
 
     /**
-     * YesnoComment constructor.
+     * SharedCatalogComment constructor.
      *
      * @param Context $context
      * @param Config $sharedCatalogConfig
@@ -39,6 +39,10 @@ class YesnoComment extends AbstractBlock implements CommentInterface
         parent::__construct($context, $data);
     }
 
+    /**
+     * @param string $elementValue
+     * @return string|null
+     */
     public function getCommentText($elementValue)
     {
         $currentWebsite = $this->emailHelper->getWebsiteForSelectedScopeInAdmin();
