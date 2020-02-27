@@ -13,8 +13,8 @@
   "require": {
     "dotmailer/dotmailer-magento2-extension": "^4.3.5",
     "magento/module-store": ">=100 <102",
-    "magento/module-b2b": "100.*",
-    "magento/module-shared-catalog": "100.*",
+    "magento/module-b2b": "*",
+    "magento/module-shared-catalog": "*",
     "magento/module-customer": ">=100 <103"
   },
   "autoload": {
