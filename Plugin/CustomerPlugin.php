@@ -5,10 +5,13 @@ namespace Dotdigitalgroup\B2b\Plugin;
 use Dotdigitalgroup\B2b\Helper\ConfigInterface;
 use Dotdigitalgroup\B2b\Helper\Data;
 use Dotdigitalgroup\B2b\Model\SharedCatalog\Config;
+use Dotdigitalgroup\B2b\Model\Company\SalesRepresentative;
 use Dotdigitalgroup\Email\Helper\Data as EmailHelper;
 use Dotdigitalgroup\Email\Model\Apiconnector\Customer;
 use Magento\Customer\Model\Customer as CustomerModel;
 use Magento\Customer\Model\ResourceModel\GroupRepository;
+use Magento\Company\Model\Company;
+use Dotdigitalgroup\Email\Logger\Logger;
 
 class CustomerPlugin
 {
@@ -33,21 +36,38 @@ class CustomerPlugin
     private $sharedCatalogConfig;
 
     /**
+     * @var Logger
+     */
+    private $logger;
+
+    /**
+     * @var SalesRepresentative
+     */
+    private $salesRepresentative;
+
+    /**
+     * CustomerPlugin constructor.
      * @param Data $helper
      * @param EmailHelper $emailHelper
      * @param GroupRepository $groupRepository
      * @param Config $sharedCatalogConfig
+     * @param Logger $logger
+     * @param SalesRepresentative $salesRepresentative
      */
     public function __construct(
         Data $helper,
         EmailHelper $emailHelper,
         GroupRepository $groupRepository,
-        Config $sharedCatalogConfig
+        Config $sharedCatalogConfig,
+        Logger $logger,
+        SalesRepresentative $salesRepresentative
     ) {
         $this->helper = $helper;
         $this->emailHelper = $emailHelper;
         $this->groupRepository = $groupRepository;
         $this->sharedCatalogConfig = $sharedCatalogConfig;
+        $this->logger = $logger;
+        $this->salesRepresentative = $salesRepresentative;
     }
 
     /**
@@ -70,7 +90,7 @@ class CustomerPlugin
                     ? ConfigInterface::CUSTOMER_TYPE_COMPANY_ADMIN
                     : ConfigInterface::CUSTOMER_TYPE_COMPANY_USER
             );
-
+            $this->setSalesRepresentative($customer, $company);
             if ($creditData = $this->helper->getCreditDataForCompany($company)) {
                 $customer->setStoreCreditBalance($creditData->getCreditLimit() - $creditData->getBalance());
             }
@@ -88,5 +108,24 @@ class CustomerPlugin
         $customer->setSharedCatalogName($sharedCatalogName);
 
         return null;
+    }
+
+    /**
+     * @param CustomerModel $customer
+     * @param $company
+     */
+    private function setSalesRepresentative(CustomerModel &$customer, Company $company)
+    {
+        try {
+            $salesRepresentative = $this->salesRepresentative->getUserByCompany($company);
+
+            $firstName = $salesRepresentative->getFirstName();
+            $lastName = $salesRepresentative->getLastName();
+            $representativeEmail = $salesRepresentative->getEmail();
+            $customer->setData('sales_representative', $firstName.' '.$lastName);
+            $customer->setData('sales_rep_email', $representativeEmail);
+        } catch (\Exception $e) {
+            $this->logger->debug((string) $e);
+        }
     }
 }

@@ -26,12 +26,22 @@
                     <label>Company Status</label>
                     <source_model>Dotdigitalgroup\Email\Model\Config\Source\Datamapping\Datafields</source_model>
                 </field>
-                <field id="store_credit_balance" translate="label" type="select" sortOrder="50" showInStore="0"
+                <field id="sales_representative" translate="label" type="select" sortOrder="50" showInStore="0"
+                       showInWebsite="1" showInDefault="1">
+                    <label>Sales Representative</label>
+                    <source_model>Dotdigitalgroup\Email\Model\Config\Source\Datamapping\Datafields</source_model>
+                </field>
+                <field id="sales_rep_email" translate="label" type="select" sortOrder="60" showInStore="0"
+                       showInWebsite="1" showInDefault="1">
+                    <label>Sales Representative Email</label>
+                    <source_model>Dotdigitalgroup\Email\Model\Config\Source\Datamapping\Datafields</source_model>
+                </field>
+                <field id="store_credit_balance" translate="label" type="select" sortOrder="70" showInStore="0"
                        showInWebsite="1" showInDefault="1">
                     <label>Store Credit Balance</label>
                     <source_model>Dotdigitalgroup\Email\Model\Config\Source\Datamapping\Datafields</source_model>
                 </field>
-                <field id="shared_catalog_name" translate="label" type="select" sortOrder="50" showInStore="0"
+                <field id="shared_catalog_name" translate="label" type="select" sortOrder="80" showInStore="0"
                        showInWebsite="1" showInDefault="1">
                     <label>Shared Catalog Name</label>
                     <source_model>Dotdigitalgroup\Email\Model\Config\Source\Datamapping\Datafields</source_model>

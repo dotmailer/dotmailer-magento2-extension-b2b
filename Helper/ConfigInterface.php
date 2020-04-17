@@ -46,6 +46,16 @@ interface ConfigInterface
             'type' => 'string',
             'visibility' => 'private',
         ],
+        'sales_representative' => [
+            'name' => 'SALES_REPRESENTATIVE',
+            'type' => 'string',
+            'visibility' => 'private',
+        ],
+        'sales_rep_email' => [
+            'name' => 'SALES_REP_EMAIL',
+            'type' => 'string',
+            'visibility' => 'private',
+        ],
     ];
 
     /**
