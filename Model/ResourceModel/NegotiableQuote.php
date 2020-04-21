@@ -77,6 +77,30 @@ class NegotiableQuote extends \Magento\Framework\Model\ResourceModel\Db\Abstract
     }
 
     /**
+     * @param $expirationDate
+     * @param $quoteId
+     */
+    public function setExpirationDateById($expirationDate, $quoteId)
+    {
+        try {
+            $conn = $this->getConnection();
+            $where = [
+                'quote_id = ?' => $quoteId
+            ];
+
+            $conn->update(
+                $this->getTable(Schema::EMAIL_B2B_QUOTE_TABLE),
+                [
+                    'expiration_date' => $expirationDate
+                ],
+                $where
+            );
+        } catch (\Exception $e) {
+            $this->logger->debug((string) $e);
+        }
+    }
+
+    /**
      * Reset the email b2b quotes for re-import.
      *
      * @param string $from

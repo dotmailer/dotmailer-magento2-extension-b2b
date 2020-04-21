@@ -125,12 +125,30 @@ class NegotiableQuote extends AbstractExtensibleModel implements NegotiableQuote
     }
 
     /**
+     * @return mixed
+     */
+    public function getExpirationDate()
+    {
+        return $this->getData(self::EXPIRATION_DATE);
+    }
+
+    /**
      * @param $imported
      * @return $this
      */
     public function setQuoteImported($imported)
     {
         $this->setData(self::QUOTE_IMPORTED, $imported);
+        return $this;
+    }
+
+    /**
+     * @param $expirationDate
+     * @return $this
+     */
+    public function setExpirationDate($expirationDate)
+    {
+        $this->setData(self::EXPIRATION_DATE);
         return $this;
     }
 }

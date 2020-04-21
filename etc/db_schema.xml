@@ -8,6 +8,7 @@
                 identity="false" comment="Quote entity ID"/>
         <column xsi:type="smallint" name="website_id" unsigned="true" nullable="false" padding="5" default="0" comment="Website ID"/>
         <column xsi:type="smallint" name="quote_imported" unsigned="true" nullable="false" padding="5" default="0" comment="Quote imported"/>
+        <column xsi:type="timestamp" name="expiration_date" on_update="false" nullable="true" comment="Expiration date"/>
         <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation time"/>
         <column xsi:type="timestamp" name="updated_at" on_update="false" nullable="true" comment="Update time"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">

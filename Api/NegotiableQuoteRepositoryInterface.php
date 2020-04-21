@@ -46,4 +46,10 @@ interface NegotiableQuoteRepositoryInterface
      * @param array $ids
      */
     public function setImportedByIds($ids);
+
+    /**
+     * @param $expirationDate
+     * @param $id
+     */
+    public function setExpirationDateById($expirationDate, $id);
 }

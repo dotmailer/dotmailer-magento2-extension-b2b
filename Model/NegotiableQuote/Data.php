@@ -127,6 +127,11 @@ class Data
     private $items = [];
 
     /**
+     * @var string
+     */
+    private $expirationDate;
+
+    /**
      * Data constructor.
      *
      * @param NegotiableQuoteRepositoryInterface $negotiableQuoteRepository
@@ -179,6 +184,7 @@ class Data
         $this->setId($ddgQuote->getQuoteId());
         $this->setCreatedAt($ddgQuote->getCreatedAt());
         $this->setUpdatedAt($ddgQuote->getUpdatedAt());
+        $this->setExpirationDate($ddgQuote->getExpirationDate());
 
         $negotiableQuote = $this->negotiableQuoteRepository->getById($ddgQuote->getQuoteId());
         $this->setName($negotiableQuote->getQuoteName());
@@ -190,7 +196,7 @@ class Data
             $cartQuote = $this->cartRepository->get($negotiableQuote->getId());
         } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
             $cartQuote = null;
-            $this->logger->debug((string) $e);
+            $this->logger->debug((string)$e);
         }
 
         if ($cartQuote) {
@@ -219,12 +225,13 @@ class Data
             'company' => $this->getCompany(),
             'created_date' => $this->dateTime->date(\Zend_Date::ISO_8601, $this->getCreatedAt()),
             'modified_date' => $this->dateTime->date(\Zend_Date::ISO_8601, $this->getUpdatedAt()),
+            'expiration_date' => $this->dateTime->date(\Zend_Date::ISO_8601, $this->getExpirationDate()),
             'quote_total' => $this->getQuoteTotal(),
             'quote_negotiated' => $this->getNegotiatedTotal(),
             'sales_rep' => $this->getSalesRep(),
             'currency' => $this->getCurrency(),
             'status' => $this->getStatus(),
-            'items' => $this->getQuoteItemsData()
+            'items' => $this->getQuoteItemsData(),
         ];
     }
 
@@ -368,5 +375,15 @@ class Data
     private function getCurrency()
     {
         return (string) $this->currency;
+    }
+
+    private function setExpirationDate($expirationDate)
+    {
+        $this->expirationDate = $expirationDate;
+    }
+
+    private function getExpirationDate()
+    {
+        return (string) $this->expirationDate;
     }
 }

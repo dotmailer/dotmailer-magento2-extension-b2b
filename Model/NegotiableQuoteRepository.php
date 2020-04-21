@@ -90,6 +90,17 @@ class NegotiableQuoteRepository implements NegotiableQuoteRepositoryInterface
     }
 
     /**
+     * @param $expirationDate
+     * @param $id
+     */
+    public function setExpirationDateById($expirationDate, $id)
+    {
+        $this->negotiableQuoteResourceFactory
+            ->create()
+            ->setExpirationDateById($expirationDate, $id);
+    }
+
+    /**
      * @param null $from
      * @param null $to
      * @return int
