@@ -2,7 +2,7 @@
   "name": "dotmailer/dotmailer-magento2-extension-b2b",
   "description": "Engagement Cloud for Magento 2: B2B module",
   "type": "magento2-module",
-  "version": "1.0.0-beta01",
+  "version": "1.0.0",
   "license": "MIT",
   "repositories": [
     {
@@ -11,7 +11,7 @@
     }
   ],
   "require": {
-    "dotmailer/dotmailer-magento2-extension": "^4.3.5",
+    "dotmailer/dotmailer-magento2-extension": ">=4.3.6",
     "magento/module-store": ">=100 <102",
     "magento/module-b2b": "*",
     "magento/module-shared-catalog": "*",
