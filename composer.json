@@ -11,7 +11,7 @@
     }
   ],
   "require": {
-    "dotmailer/dotmailer-magento2-extension": ">=4.3.6",
+    "dotmailer/dotmailer-magento2-extension": ">=4.5.6",
     "magento/module-store": ">=100 <102",
     "magento/module-b2b": "*",
     "magento/module-shared-catalog": "*",
