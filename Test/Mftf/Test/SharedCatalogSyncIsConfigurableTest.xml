@@ -16,7 +16,7 @@
 
         <after>
             <actionGroup ref="ResetSharedCatalogConfig" stepKey="resetConfigAfter"/>
-            <actionGroup ref="logout" stepKey="logout"/>
+            <actionGroup ref="AdminLogoutActionGroup" stepKey="logout"/>
         </after>
 
         <!-- Go to Stores > General > B2B Features -->
