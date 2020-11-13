@@ -2,8 +2,9 @@
 
 namespace Dotdigitalgroup\B2b\Plugin;
 
-use Dotdigitalgroup\B2b\Api\NegotiableQuoteRepositoryInterface;
+use Dotdigitalgroup\B2b\Api\Data\NegotiableQuoteInterface;
 use Dotdigitalgroup\B2b\Api\Data\NegotiableQuoteInterfaceFactory;
+use Dotdigitalgroup\B2b\Api\NegotiableQuoteRepositoryInterface;
 use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Framework\Stdlib\DateTime;
 
@@ -41,6 +42,14 @@ class NegotiableQuotePlugin
         $this->dateTime = $dateTime;
     }
 
+    /**
+     * @param NegotiableQuoteRepositoryInterface $subject
+     * @param bool $result
+     * @param NegotiableQuoteInterface $quoteModel
+     * @return bool
+     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
     public function afterSave($subject, $result, $quoteModel)
     {
         //Negotiable Quote edited either in frontend or backend
@@ -48,14 +57,14 @@ class NegotiableQuotePlugin
             $this->negotiableQuoteRepository->setUnimported($quoteModel->getQuoteId());
             $this->negotiableQuoteRepository
                 ->setExpirationDateById(
-                    $this->dateTime->formatDate($quoteModel->getExpirationPeriod().' 23:59:59', true),
+                    $this->dateTime->formatDate($quoteModel->getExpirationPeriod() . ' 23:59:59', true),
                     $quoteModel->getQuoteId()
                 );
         }
 
         //If data already exists in quoteModel we do not need to create new record in email_b2b_quote table
         if ($this->negotiableQuoteRepository->getByQuoteId($quoteModel->getQuoteId())->getData()) {
-            return;
+            return $result;
         }
 
         $customerObject = $this->customerRepositoryInterface->getById($quoteModel->getCreatorId());
@@ -67,6 +76,7 @@ class NegotiableQuotePlugin
             ->setExpirationDate($quoteModel->getExpirationPeriod());
 
         $this->negotiableQuoteRepository->save($ddgQuote);
+        return $result;
     }
 
     /**
