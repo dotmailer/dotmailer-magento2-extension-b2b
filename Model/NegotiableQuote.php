@@ -2,15 +2,13 @@
 
 namespace Dotdigitalgroup\B2b\Model;
 
-use Magento\Framework\Api\AttributeValueFactory;
-use Magento\Framework\Api\ExtensionAttributesFactory;
 use Magento\Framework\Data\Collection\AbstractDb;
-use Magento\Framework\Model\AbstractExtensibleModel;
+use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\Model\Context;
 use Magento\Framework\Model\ResourceModel\AbstractResource;
 use Dotdigitalgroup\B2b\Api\Data\NegotiableQuoteInterface;
 
-class NegotiableQuote extends AbstractExtensibleModel implements NegotiableQuoteInterface
+class NegotiableQuote extends AbstractModel implements NegotiableQuoteInterface
 {
     /**
      * @var string
@@ -26,8 +24,6 @@ class NegotiableQuote extends AbstractExtensibleModel implements NegotiableQuote
      * NegotiableQuote constructor.
      * @param Context $context
      * @param \Magento\Framework\Registry $registry
-     * @param ExtensionAttributesFactory $extensionFactory
-     * @param AttributeValueFactory $customAttributeFactory
      * @param AbstractResource|null $resource
      * @param AbstractDb|null $resourceCollection
      * @param \Magento\Framework\Stdlib\DateTime $dateTime
@@ -37,8 +33,6 @@ class NegotiableQuote extends AbstractExtensibleModel implements NegotiableQuote
         \Magento\Framework\Stdlib\DateTime $dateTime,
         Context $context,
         \Magento\Framework\Registry $registry,
-        ExtensionAttributesFactory $extensionFactory,
-        AttributeValueFactory $customAttributeFactory,
         AbstractResource $resource = null,
         AbstractDb $resourceCollection = null,
         array $data = []
@@ -47,8 +41,6 @@ class NegotiableQuote extends AbstractExtensibleModel implements NegotiableQuote
         parent::__construct(
             $context,
             $registry,
-            $extensionFactory,
-            $customAttributeFactory,
             $resource,
             $resourceCollection,
             $data
