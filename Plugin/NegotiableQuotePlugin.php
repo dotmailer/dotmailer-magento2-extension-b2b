@@ -50,7 +50,7 @@ class NegotiableQuotePlugin
      * @throws \Magento\Framework\Exception\LocalizedException
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function afterSave($subject, $result, $quoteModel)
+    public function afterSave(NegotiableQuoteRepositoryInterface $subject, $result, $quoteModel)
     {
         //Negotiable Quote edited either in frontend or backend
         if ($this->toSetUnimported($quoteModel)) {

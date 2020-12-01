@@ -35,10 +35,10 @@ class DataFieldPlugin
 
     /**
      * @param Datafield $dataField
-     * @param array $result
+     * @param bool $withXmlPathPrefixes
      * @return null
      */
-    public function beforeGetContactDatafields(Datafield $dataField)
+    public function beforeGetContactDatafields(Datafield $dataField, bool $withXmlPathPrefixes)
     {
         $contactDataFields = ConfigInterface::CONTACT_B2B_DATA_FIELDS;
         $currentWebsite = $this->emailHelper->getWebsiteForSelectedScopeInAdmin();
