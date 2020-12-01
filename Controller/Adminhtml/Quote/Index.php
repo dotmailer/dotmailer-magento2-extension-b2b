@@ -12,7 +12,7 @@ class Index extends \Magento\Backend\App\Action
      *
      * @see _isAllowed()
      */
-    const ADMIN_RESOURCE = 'Dotdigitalgroup_B2b::quote';
+    const ADMIN_RESOURCE = 'Dotdigitalgroup_B2b::quotes';
 
     /**
      * @var PageFactory
@@ -40,7 +40,7 @@ class Index extends \Magento\Backend\App\Action
     {
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
-        $resultPage->setActiveMenu('Dotdigitalgroup_B2b::quote');
+        $resultPage->setActiveMenu('Dotdigitalgroup_B2b::quotes');
         $resultPage->addBreadcrumb(__('Quotes'), __('Quotes'));
         $resultPage->addBreadcrumb(__('Reports'), __('Reports'));
         $resultPage->getConfig()->getTitle()->prepend(__('Quotes Report'));
