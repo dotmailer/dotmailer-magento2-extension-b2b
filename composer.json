@@ -20,7 +20,12 @@
     "magento/module-backend": ">=100 <103",
     "magento/module-company": ">=100 <102",
     "magento/module-company-credit": "100.*",
-    "magento/module-negotiable-quote": "100.*"
+    "magento/module-negotiable-quote": "100.*",
+    "magento/module-user": ">=100 <102",
+    "magento/module-config": ">=100 <103",
+    "magento/module-catalog": ">=101 <105",
+    "magento/module-quote": ">=101 <102",
+    "magento/module-bundle": ">=100 <102"
   },
   "autoload": {
     "files": [ "registration.php" ],
