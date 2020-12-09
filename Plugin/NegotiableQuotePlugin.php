@@ -7,6 +7,7 @@ use Dotdigitalgroup\B2b\Api\Data\NegotiableQuoteInterfaceFactory;
 use Dotdigitalgroup\B2b\Api\NegotiableQuoteRepositoryInterface;
 use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Framework\Stdlib\DateTime;
+use Magento\NegotiableQuote\Model\NegotiableQuoteRepository;
 
 class NegotiableQuotePlugin
 {
@@ -43,14 +44,14 @@ class NegotiableQuotePlugin
     }
 
     /**
-     * @param NegotiableQuoteRepositoryInterface $subject
+     * @param NegotiableQuoteRepository $subject
      * @param bool $result
      * @param NegotiableQuoteInterface $quoteModel
      * @return bool
      * @throws \Magento\Framework\Exception\LocalizedException
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function afterSave(NegotiableQuoteRepositoryInterface $subject, $result, $quoteModel)
+    public function afterSave(NegotiableQuoteRepository $subject, $result, $quoteModel)
     {
         //Negotiable Quote edited either in frontend or backend
         if ($this->toSetUnimported($quoteModel)) {
