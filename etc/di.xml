@@ -22,11 +22,11 @@
     </type>
     <type name="Magento\SharedCatalog\Model\ResourceModel\ProductItem\Price\PriceProcessor">
         <plugin name="ddg_b2b_shared_catalog_price_processor_plugin"
-                type="Dotdigitalgroup\B2b\Plugin\SharedCatalogPriceUpdatePlugin"/>
+                type="Dotdigitalgroup\B2b\Plugin\SharedCatalogPriceProcessorPlugin"/>
     </type>
     <type name="Magento\SharedCatalog\Model\ResourceModel\ProductItem\Price\Consumer">
         <plugin name="ddg_b2b_shared_catalog_price_consumer_plugin"
-                type="Dotdigitalgroup\B2b\Plugin\SharedCatalogPriceUpdatePlugin"/>
+                type="Dotdigitalgroup\B2b\Plugin\SharedCatalogPriceConsumerPlugin"/>
     </type>
     <type name="Magento\SharedCatalog\Controller\Adminhtml\SharedCatalog\Configure\Save">
         <plugin name="ddg_b2b_shared_catalog_save_configuration_plugin"
@@ -46,7 +46,7 @@
     </type>
     <type name="Magento\SharedCatalog\Model\SharedCatalogBuilder">
         <plugin name="ddg_b2b_shared_catalog_builder_plugin"
-                type="Dotdigitalgroup\B2b\Plugin\SharedCatalogUpdatePlugin"/>
+                type="Dotdigitalgroup\B2b\Plugin\SharedCatalogBuilderPlugin"/>
     </type>
     <type name="Magento\SharedCatalog\Model\Repository">
         <plugin name="ddg_b2b_shared_catalog_repository_plugin"

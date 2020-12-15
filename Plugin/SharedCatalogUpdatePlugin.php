@@ -3,6 +3,7 @@
 namespace Dotdigitalgroup\B2b\Plugin;
 
 use Dotdigitalgroup\B2b\Model\SharedCatalog\Contacts;
+use Dotdigitalgroup\B2b\Model\SharedCatalog\Name;
 use Dotdigitalgroup\Email\Model\ResourceModel\Contact as ContactResource;
 use Magento\SharedCatalog\Api\Data\SharedCatalogInterface;
 use Magento\SharedCatalog\Model\Repository;
@@ -11,14 +12,14 @@ use Magento\SharedCatalog\Model\SharedCatalogBuilder;
 class SharedCatalogUpdatePlugin
 {
     /**
-     * @var string
-     */
-    private $sharedCatalogName;
-
-    /**
      * @var Contacts
      */
     private $contacts;
+
+    /**
+     * @var Name
+     */
+    private $sharedCatalogNameService;
 
     /**
      * @var ContactResource
@@ -27,29 +28,17 @@ class SharedCatalogUpdatePlugin
 
     /**
      * @param Contacts $contacts
+     * @param Name $sharedCatalogNameService
      * @param ContactResource $contactResource
      */
     public function __construct(
         Contacts $contacts,
+        Name $sharedCatalogNameService,
         ContactResource $contactResource
     ) {
         $this->contacts = $contacts;
+        $this->sharedCatalogNameService = $sharedCatalogNameService;
         $this->contactsResource = $contactResource;
-    }
-
-    /**
-     * Get shared catalog name before save
-     *
-     * @param SharedCatalogBuilder $sharedCatalogBuilder
-     * @param SharedCatalogInterface $sharedCatalog
-     * @return SharedCatalogInterface
-     */
-    public function afterBuild(
-        SharedCatalogBuilder $sharedCatalogBuilder,
-        SharedCatalogInterface $sharedCatalog
-    ) {
-        $this->sharedCatalogName = $sharedCatalog->getName();
-        return $sharedCatalog;
     }
 
     /**
@@ -65,7 +54,7 @@ class SharedCatalogUpdatePlugin
         int $sharedCatalogId,
         SharedCatalogInterface $sharedCatalog
     ) {
-        if ($this->sharedCatalogName != $sharedCatalog->getName()) {
+        if ($this->sharedCatalogNameService->getSharedCatalogName() != $sharedCatalog->getName()) {
             // shared catalog name changed
             $this->reimportSharedCatalogContacts($sharedCatalog);
         }
