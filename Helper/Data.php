@@ -53,11 +53,10 @@ class Data extends AbstractHelper
      */
     public function getB2bAttributes(WebsiteInterface $website)
     {
-        $store = $website->getDefaultStore();
         $mappedDataFields = $this->scopeConfig->getValue(
             'connector_data_mapping/b2b_extra_data',
-            ScopeInterface::SCOPE_STORE,
-            $store->getId()
+            ScopeInterface::SCOPE_WEBSITES,
+            $website->getId()
         );
 
         return $mappedDataFields ?: [];
