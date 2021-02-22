@@ -6,4 +6,7 @@
             <argument name="resourceModel" xsi:type="string">Dotdigitalgroup\B2b\Model\ResourceModel\NegotiableQuote</argument>
         </arguments>
     </virtualType>
+    <type name="Dotdigitalgroup\Email\Model\Connector\Module">
+        <plugin name="module_plugin_b2b" type="Dotdigitalgroup\B2b\Plugin\ModulePlugin" sortOrder="3"/>
+    </type>
 </config>
