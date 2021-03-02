@@ -35,7 +35,7 @@ class ModulePlugin
             'version' => $this->fullModuleList->getOne(self::MODULE_NAME)['setup_version']
         ];
         return [
-            'additional_modules' => $modules
+            $modules
         ];
     }
 }
