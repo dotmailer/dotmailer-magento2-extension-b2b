@@ -2,9 +2,6 @@
 <tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
     <test name="SharedCatalogSyncIsNotConfigurableTest">
         <annotations>
-            <skip>
-                <issueId value="BUNDLE-2884"/>
-            </skip>
             <features value="Engagement Cloud B2B module"/>
             <stories value="Configure shared catalog sync"/>
             <title value="Shared catalog sync is not configurable"/>
