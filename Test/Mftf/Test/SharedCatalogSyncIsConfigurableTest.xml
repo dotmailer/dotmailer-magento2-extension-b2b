@@ -24,6 +24,7 @@
         <waitForPageLoad stepKey="waitForPageLoad"/>
 
         <!-- Activate Company and Shared Catalog -->
+        <conditionalClick selector="{{AdminB2BConfigSection.b2bFeaturesSectionHeader}}" dependentSelector="{{AdminB2BConfigSection.company}}" visible="false" stepKey="expandB2BFeaturesAccordion"/>
         <selectOption selector="{{AdminB2BConfigSection.company}}" userInput="{{companyActive.value}}" stepKey="enableCompany"/>
         <selectOption selector="{{AdminB2BConfigSection.sharedCatalog}}" userInput="{{sharedCatalogActive.value}}" stepKey="enableSharedCatalog"/>
         <click selector="{{AdminMainActionsSection.save}}" stepKey="clickSaveConfig"/>
