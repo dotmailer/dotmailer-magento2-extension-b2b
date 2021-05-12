@@ -5,6 +5,7 @@ namespace Dotdigitalgroup\B2b\Plugin;
 use Dotdigitalgroup\B2b\Api\Data\NegotiableQuoteInterface;
 use Dotdigitalgroup\B2b\Api\Data\NegotiableQuoteInterfaceFactory;
 use Dotdigitalgroup\B2b\Api\NegotiableQuoteRepositoryInterface;
+use Dotdigitalgroup\Email\Logger\Logger;
 use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Framework\Stdlib\DateTime;
 use Magento\NegotiableQuote\Model\NegotiableQuoteRepository;
@@ -31,16 +32,23 @@ class NegotiableQuotePlugin
      */
     private $dateTime;
 
+    /**
+     * @var Logger
+     */
+    private $logger;
+
     public function __construct(
         NegotiableQuoteInterfaceFactory $negotiableQuoteInterface,
         NegotiableQuoteRepositoryInterface $negotiableQuoteRepository,
         CustomerRepositoryInterface $customerRepositoryInterface,
-        DateTime $dateTime
+        DateTime $dateTime,
+        Logger $logger
     ) {
         $this->negotiableQuoteRepository = $negotiableQuoteRepository;
         $this->negotiableQuoteInterface = $negotiableQuoteInterface;
         $this->customerRepositoryInterface = $customerRepositoryInterface;
         $this->dateTime = $dateTime;
+        $this->logger = $logger;
     }
 
     /**
@@ -68,15 +76,23 @@ class NegotiableQuotePlugin
             return $result;
         }
 
-        $customerObject = $this->customerRepositoryInterface->getById($quoteModel->getCreatorId());
+        try {
+            $customerObject = $this->customerRepositoryInterface->getById($quoteModel->getCreatorId());
 
-        $ddgQuote = $this->negotiableQuoteInterface->create()
-            ->setQuoteId($quoteModel->getQuoteId())
-            ->setQuoteImported(0)
-            ->setWebsiteId($customerObject->getWebsiteId())
-            ->setExpirationDate($quoteModel->getExpirationPeriod());
+            $ddgQuote = $this->negotiableQuoteInterface->create()
+                ->setQuoteId($quoteModel->getQuoteId())
+                ->setQuoteImported(0)
+                ->setWebsiteId($customerObject->getWebsiteId())
+                ->setExpirationDate($quoteModel->getExpirationPeriod());
 
-        $this->negotiableQuoteRepository->save($ddgQuote);
+            $this->negotiableQuoteRepository->save($ddgQuote);
+        } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
+            $this->logger->debug(
+                'Could not save B2B quote for customer with id: ' . $quoteModel->getCreatorId(),
+                [(string) $e]
+            );
+        }
+
         return $result;
     }
 
