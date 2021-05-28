@@ -79,7 +79,7 @@
                 <field id="reset_quotes" translate="label" sortOrder="300" showInStore="0" showInWebsite="1"
                        showInDefault="1">
                     <label>Reset B2B Quotes</label>
-                    <frontend_model>Dotdigitalgroup\B2b\Block\Adminhtml\Config\Developer\Resetquotes</frontend_model>
+                    <frontend_model>resetNegotiableQuotesVirtualType</frontend_model>
                 </field>
             </group>
         </section>

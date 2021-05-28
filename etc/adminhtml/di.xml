@@ -6,7 +6,15 @@
             <argument name="resourceModel" xsi:type="string">Dotdigitalgroup\B2b\Model\ResourceModel\NegotiableQuote</argument>
         </arguments>
     </virtualType>
+    <virtualType name="resetNegotiableQuotesVirtualType" type="Dotdigitalgroup\Email\Block\Adminhtml\Config\Developer\ButtonReset">
+        <arguments>
+            <argument name="resetType" xsi:type="string">negotiableQuote</argument>
+        </arguments>
+    </virtualType>
     <type name="Dotdigitalgroup\Email\Model\Connector\Module">
         <plugin name="module_plugin_b2b" type="Dotdigitalgroup\B2b\Plugin\ModulePlugin" sortOrder="3"/>
+    </type>
+    <type name="Dotdigitalgroup\Email\Model\Resetter">
+        <plugin name="module_reset_b2b" type="Dotdigitalgroup\B2b\Plugin\ResetTypePlugin"/>
     </type>
 </config>
