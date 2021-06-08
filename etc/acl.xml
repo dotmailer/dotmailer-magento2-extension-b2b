@@ -4,8 +4,8 @@
         <resources>
             <resource id="Magento_Backend::admin">
                 <resource id="Magento_Reports::report">
-                    <resource id="Dotdigitalgroup_B2b::reports" title="dotdigital B2B">
-                        <resource id="Dotdigitalgroup_B2b::quotes" title="dotdigital B2B Quotes" sortOrder="20"/>
+                    <resource id="Dotdigitalgroup_B2b::reports" title="dotdigital B2B" translate="title">
+                        <resource id="Dotdigitalgroup_B2b::quotes" title="dotdigital B2B Quotes" translate="title" sortOrder="20"/>
                     </resource>
                 </resource>
             </resource>
