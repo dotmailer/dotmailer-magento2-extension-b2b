@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="Dotdigitalgroup_B2b" setup_version="1.3.0">
+    <module name="Dotdigitalgroup_B2b">
         <sequence>
             <module name="Dotdigitalgroup_Email"/>
             <module name="Magento_B2b"/>
