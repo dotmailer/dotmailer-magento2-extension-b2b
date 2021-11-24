@@ -1,5 +1,5 @@
 {
-  "name": "dotmailer/dotmailer-magento2-extension-b2b",
+  "name": "dotdigital/dotdigital-magento2-extension-b2b",
   "description": "Dotdigital for Magento 2: B2B module",
   "type": "magento2-module",
   "version": "1.5.0-RC1",
@@ -10,9 +10,12 @@
       "url": "https://repo.magento.com/"
     }
   ],
+  "replace": {
+    "dotmailer/dotmailer-magento2-extension-b2b": "*"
+  },
   "require": {
     "php": "^7.1",
-    "dotmailer/dotmailer-magento2-extension": ">=4.14.0-RC1",
+    "dotmailer/dotmailer-magento2-extension": "^4.14.0",
     "magento/framework": ">=101 <104",
     "magento/module-store": ">=100 <102",
     "magento/module-b2b": "*",
