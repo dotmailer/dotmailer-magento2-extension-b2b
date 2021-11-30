@@ -14,7 +14,7 @@
     "dotmailer/dotmailer-magento2-extension-b2b": "*"
   },
   "require": {
-    "php": "^7.1",
+    "php": "^7.1||^8.0",
     "dotmailer/dotmailer-magento2-extension": "^4.14.0",
     "magento/framework": ">=101 <104",
     "magento/module-store": ">=100 <102",
