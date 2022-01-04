@@ -4,14 +4,15 @@ namespace Dotdigitalgroup\B2b\Plugin;
 
 use Dotdigitalgroup\B2b\Helper\ConfigInterface;
 use Dotdigitalgroup\B2b\Helper\Data;
-use Dotdigitalgroup\B2b\Model\SharedCatalog\Config;
 use Dotdigitalgroup\B2b\Model\Company\SalesRepresentative;
+use Dotdigitalgroup\B2b\Model\SharedCatalog\Config;
 use Dotdigitalgroup\Email\Helper\Data as EmailHelper;
+use Dotdigitalgroup\Email\Logger\Logger;
 use Dotdigitalgroup\Email\Model\Apiconnector\Customer;
+use Magento\Company\Model\Company;
 use Magento\Customer\Model\Customer as CustomerModel;
 use Magento\Customer\Model\ResourceModel\GroupRepository;
-use Magento\Company\Model\Company;
-use Dotdigitalgroup\Email\Logger\Logger;
+use Magento\Framework\Exception\NoSuchEntityException;
 
 class CustomerPlugin
 {
@@ -91,9 +92,7 @@ class CustomerPlugin
                     : ConfigInterface::CUSTOMER_TYPE_COMPANY_USER
             );
             $this->setSalesRepresentative($customer, $company);
-            if ($creditData = $this->helper->getCreditDataForCompany($company)) {
-                $customer->setStoreCreditBalance($creditData->getCreditLimit() - $creditData->getBalance());
-            }
+            $this->setCreditData($customer, $company);
 
             $currentWebsite = $this->emailHelper->getWebsiteForSelectedScopeInAdmin();
             if ($this->sharedCatalogConfig->isSharedCatalogEnabled($currentWebsite->getId())
@@ -112,7 +111,7 @@ class CustomerPlugin
 
     /**
      * @param CustomerModel $customer
-     * @param $company
+     * @param Company $company
      */
     private function setSalesRepresentative(CustomerModel &$customer, Company $company)
     {
@@ -122,10 +121,28 @@ class CustomerPlugin
             $firstName = $salesRepresentative->getFirstName();
             $lastName = $salesRepresentative->getLastName();
             $representativeEmail = $salesRepresentative->getEmail();
-            $customer->setData('sales_representative', $firstName.' '.$lastName);
+            $customer->setData('sales_representative', $firstName . ' ' . $lastName);
             $customer->setData('sales_rep_email', $representativeEmail);
         } catch (\Exception $e) {
             $this->logger->debug((string) $e);
+        }
+    }
+
+    /**
+     * @param CustomerModel $customer
+     * @param Company $company
+     */
+    private function setCreditData(CustomerModel &$customer, Company $company)
+    {
+        try {
+            if ($creditData = $this->helper->getCreditDataForCompany($company)) {
+                $customer->setStoreCreditBalance($creditData->getCreditLimit() - $creditData->getBalance());
+            }
+        } catch (NoSuchEntityException $e) {
+            $this->logger->debug(
+                'Could not fetch credit data, customer store credit balance not set.',
+                [(string) $e]
+            );
         }
     }
 }
