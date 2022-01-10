@@ -60,6 +60,9 @@
         <plugin name="ddg_b2b_importer_queue_manager_plugin"
                 type="Dotdigitalgroup\B2b\Plugin\ImporterQueueManagerPlugin"/>
     </type>
+    <type name="Dotdigitalgroup\Email\Model\Sync\Integration\DotdigitalConfig">
+        <plugin name="ddg_b2b_config_provider_plugin" type="Dotdigitalgroup\B2b\Plugin\ConfigProviderPlugin"/>
+    </type>
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">

@@ -3,24 +3,23 @@
 namespace Dotdigitalgroup\B2b\Plugin;
 
 use Dotdigitalgroup\Email\Model\Connector\Module;
-use Magento\Framework\Module\ModuleListInterface;
 
 class ModulePlugin
 {
     const MODULE_NAME = 'Dotdigitalgroup_B2b';
-    const MODULE_DESCRIPTION = 'Engagement Cloud for Magento B2B';
+    const MODULE_DESCRIPTION = 'Dotdigital for Magento B2B';
 
     /**
-     * @var ModuleListInterface
+     * @var Module
      */
-    private $fullModuleList;
+    private $module;
 
     /**
-     * @param ModuleListInterface $moduleListInterface
+     * @param Module $module
      */
-    public function __construct(ModuleListInterface $moduleListInterface)
+    public function __construct(Module $module)
     {
-        $this->fullModuleList = $moduleListInterface;
+        $this->module = $module;
     }
 
     /**
@@ -32,7 +31,7 @@ class ModulePlugin
     {
         $modules[] = [
             'name' => self::MODULE_DESCRIPTION,
-            'version' => $this->fullModuleList->getOne(self::MODULE_NAME)['setup_version']
+            'version' => $this->module->getModuleVersion(self::MODULE_NAME)
         ];
         return [
             $modules

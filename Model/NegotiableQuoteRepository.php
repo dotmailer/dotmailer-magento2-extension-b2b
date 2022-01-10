@@ -101,8 +101,8 @@ class NegotiableQuoteRepository implements NegotiableQuoteRepositoryInterface
     }
 
     /**
-     * @param null $from
-     * @param null $to
+     * @param null|string $from
+     * @param null|string $to
      * @return int
      */
     public function reset($from = null, $to = null)
