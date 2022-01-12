@@ -4,8 +4,6 @@ namespace Dotdigitalgroup\B2b\Plugin;
 
 use Dotdigitalgroup\B2b\Model\SharedCatalog\Config;
 use Dotdigitalgroup\Email\Model\Sync\Catalog\Exporter;
-use Dotdigitalgroup\Email\Model\ImporterFactory;
-use Dotdigitalgroup\Email\Logger\Logger;
 use Dotdigitalgroup\B2b\Model\SharedCatalog\Catalog;
 use Dotdigitalgroup\Email\Model\Sync\Catalog\SyncContextService;
 use Dotdigitalgroup\Email\Model\Connector\KeyValidator;
@@ -21,16 +19,6 @@ class StoreCatalogSyncerPlugin
      * @var Exporter
      */
     private $exporter;
-
-    /**
-     * @var ImporterFactory
-     */
-    private $importerFactory;
-
-    /**
-     * @var Logger
-     */
-    private $logger;
 
     /**
      * @var Catalog
@@ -50,8 +38,6 @@ class StoreCatalogSyncerPlugin
     /**
      * @param Config $sharedCatalogConfig
      * @param Exporter $exporter
-     * @param ImporterFactory $importerFactory
-     * @param Logger $logger
      * @param Catalog $catalog
      * @param SyncContextService $contextService
      * @param KeyValidator $keyValidator
@@ -59,16 +45,12 @@ class StoreCatalogSyncerPlugin
     public function __construct(
         Config $sharedCatalogConfig,
         Exporter $exporter,
-        ImporterFactory $importerFactory,
-        Logger $logger,
         Catalog $catalog,
         SyncContextService $contextService,
         KeyValidator $keyValidator
     ) {
         $this->sharedCatalogConfig = $sharedCatalogConfig;
         $this->exporter = $exporter;
-        $this->importerFactory = $importerFactory;
-        $this->logger = $logger;
         $this->catalog = $catalog;
         $this->contextService = $contextService;
         $this->validator = $keyValidator;
@@ -76,12 +58,12 @@ class StoreCatalogSyncerPlugin
 
     /**
      * @param \Dotdigitalgroup\Email\Model\Sync\Catalog\StoreCatalogSyncer $storeCatalogSyncer
-     * @param $result
-     * @param $productsToProcess
-     * @param $storeId
-     * @param $websiteId
-     * @param $importType
-     * @return mixed
+     * @param array $result
+     * @param array $productsToProcess
+     * @param string $storeId
+     * @param string $websiteId
+     * @param string $catalogName
+     * @return array[]
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function afterSyncByStore(
@@ -90,7 +72,7 @@ class StoreCatalogSyncerPlugin
         $productsToProcess,
         $storeId,
         $websiteId,
-        $importType
+        $catalogName
     ) {
         if (!$this->sharedCatalogConfig->isSharedCatalogSyncEnabled($websiteId)) {
             return $result;
@@ -118,20 +100,12 @@ class StoreCatalogSyncerPlugin
 
             if ($products) {
                 $cleanSharedCatalogName = $this->validator->cleanLabel($catalog['name'], '_');
-                $sharedCatalogImportType = $importType . '_' . $cleanSharedCatalogName;
+                $sharedCatalogImportType = $catalogName . '_' . $cleanSharedCatalogName;
 
-                $success = $this->importerFactory->create()
-                    ->registerQueue(
-                        $sharedCatalogImportType,
-                        $products,
-                        \Dotdigitalgroup\Email\Model\Importer::MODE_BULK,
-                        $websiteId
-                    );
-
-                if ($success) {
-                    $msg = 'Shared catalog ' . $sharedCatalogImportType . ' registered with Importer';
-                    $this->logger->info($msg);
-                }
+                $result[$sharedCatalogImportType] = [
+                    'products' => $products,
+                    'websiteId' => $websiteId
+                ];
             }
         }
 
