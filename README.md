@@ -27,6 +27,7 @@ This module is dedicated to Magento merchants that also sell to other businesses
 ##### Improvements
 - We've added a new plugin to provide additional configuration values to our integration insight data cron.
 - We've added a new plugin to facilitate data migration by table.
+- We've updated the plugin that fetches shared catalogs for sync, in line with our catalog sync improvements.
 - `setup_version` has been removed from module.xml; in the Dashboard, we now use composer.json to provide the current active module version.
 - Our ACL resources are now translatable.
 - We updated the function of the 'Reset B2B Quotes' button in **Dotdigital > Developer**, in line with changes in the `Dotdigitalgroup_Email` module.
