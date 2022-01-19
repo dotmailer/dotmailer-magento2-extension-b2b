@@ -16,13 +16,13 @@
         </constraint>
         <constraint xsi:type="foreign" referenceId="EMAIL_B2B_QUOTE_QUOTE_ID_NEGOTIABLE_QUOTE_QUOTE_ID" table="email_b2b_quote" column="quote_id" referenceTable="negotiable_quote" referenceColumn="quote_id" onDelete="CASCADE"/>
         <constraint xsi:type="foreign" referenceId="EMAIL_B2B_QUOTE_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID" table="email_b2b_quote" column="website_id" referenceTable="store_website" referenceColumn="website_id" onDelete="CASCADE"/>
-        <index referenceId="EMAIL_B2B_QUOTE_QUOTE_ID">
+        <index referenceId="EMAIL_B2B_QUOTE_QUOTE_ID" indexType="btree">
             <column name="quote_id"/>
         </index>
-        <index referenceId="EMAIL_B2B_QUOTE_WEBSITE_ID">
+        <index referenceId="EMAIL_B2B_QUOTE_WEBSITE_ID" indexType="btree">
             <column name="website_id"/>
         </index>
-        <index referenceId="EMAIL_B2B_QUOTE_QUOTE_IMPORTED">
+        <index referenceId="EMAIL_B2B_QUOTE_QUOTE_IMPORTED" indexType="btree">
             <column name="quote_imported"/>
         </index>
     </table>
