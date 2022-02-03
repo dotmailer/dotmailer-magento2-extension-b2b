@@ -11,9 +11,21 @@ This module is dedicated to Magento merchants that also sell to other businesses
 - Requires Dotdigital extension versions:
   - `Dotdigitalgroup_Email` 4.14.0+
   - `Dotdigitalgroup_Enterprise` 1.8.0+ (if used)
-  
+
+## Installation
+We encourage merchants to install our core modules via our combined **Dotdigital - Marketing Automation** extension, available on the [Magento Marketplace](https://marketplace.magento.com/dotdigital-dotdigital-magento2-os-package.html).
+
+**Steps:**
+1. First, ‘purchase’ the [core extension](https://marketplace.magento.com/dotdigital-dotdigital-magento2-os-package.html).
+2. Any existing `require` instructions in your composer.json relating to `dotmailer/*` packages must be removed.
+3. Now, require the correct packages.
+```
+composer require dotdigital/dotdigital-magento2-os-package
+composer require dotdigital/dotdigital-magento2-extension-enterprise
+composer require dotdigital/dotdigital-magento2-extension-b2b
+```
+
 ## Activation
-- This module is included in our B2B metapackage. Please refer to [these instructions](https://github.com/dotmailer/dotmailer-magento2-extension#installation) to install via the Magento Marketplace.
 - Ensure you have set valid API credentials in **Configuration > Dotdigital > Account Settings**
 - Enable Shared Catalog and B2B Quote in **General > B2B Features** to use the related syncs.
 
