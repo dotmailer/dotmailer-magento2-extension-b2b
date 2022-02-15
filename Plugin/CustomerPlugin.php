@@ -72,6 +72,8 @@ class CustomerPlugin
     }
 
     /**
+     * Set contact data fields for B2B.
+     *
      * @param Customer $subject
      * @return null
      * @throws \Magento\Framework\Exception\LocalizedException
@@ -87,7 +89,7 @@ class CustomerPlugin
             $customer->setCompany($company->getCompanyName());
             $customer->setCompanyStatus(ConfigInterface::COMPANY_STATUS_LABELS[$company->getStatus()]);
             $customer->setCustomerType(
-                $this->helper->getCompanyAdmin($company)->getId() === $customer->getId()
+                $this->isCompanyAdmin($customer, $company)
                     ? ConfigInterface::CUSTOMER_TYPE_COMPANY_ADMIN
                     : ConfigInterface::CUSTOMER_TYPE_COMPANY_USER
             );
@@ -110,6 +112,8 @@ class CustomerPlugin
     }
 
     /**
+     * Set sales representative.
+     *
      * @param CustomerModel $customer
      * @param Company $company
      */
@@ -129,6 +133,8 @@ class CustomerPlugin
     }
 
     /**
+     * Set credit data.
+     *
      * @param CustomerModel $customer
      * @param Company $company
      */
@@ -144,5 +150,22 @@ class CustomerPlugin
                 [(string) $e]
             );
         }
+    }
+
+    /**
+     * Check if customer is company admin contact.
+     *
+     * @param CustomerModel $customer
+     * @param Company $company
+     *
+     * @return bool
+     */
+    private function isCompanyAdmin(CustomerModel $customer, Company $company)
+    {
+        $companyAdmin = $this->helper->getCompanyAdmin($company);
+        if (!$companyAdmin) {
+            return false;
+        }
+        return $companyAdmin->getId() === $customer->getId();
     }
 }
