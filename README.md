@@ -31,6 +31,11 @@ composer require dotdigital/dotdigital-magento2-extension-b2b
 
 ## Changelog
 
+### 1.5.1
+
+##### Bug fixes
+- We fixed a bug with missing company admins breaking the contact sync.
+
 ### 1.5.0
 
 ##### What's new
