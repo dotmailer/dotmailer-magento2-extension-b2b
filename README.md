@@ -31,10 +31,16 @@ composer require dotdigital/dotdigital-magento2-extension-b2b
 
 ## Changelog
 
+### 1.5.2
+
+##### Improvements
+- The B2B quote data migration now inherits from a new abstract class in the Email module.
+
 ### 1.5.1
 
 ##### Bug fixes
 - We fixed a bug with missing company admins breaking the contact sync.
+- We added the `indexType` param to our `index` schema definitions (this is required for PHP 8.1).
 
 ### 1.5.0
 
