@@ -3,10 +3,10 @@
 namespace Dotdigitalgroup\B2b\Setup\Install\Type;
 
 use Dotdigitalgroup\B2b\Setup\SchemaInterface;
-use Dotdigitalgroup\Email\Setup\Install\Type\AbstractDataMigration;
+use Dotdigitalgroup\Email\Setup\Install\Type\AbstractBatchInserter;
 use Dotdigitalgroup\Email\Setup\Install\Type\InsertTypeInterface;
 
-class InsertB2bQuoteTable extends AbstractDataMigration implements InsertTypeInterface
+class InsertB2bQuoteTable extends AbstractBatchInserter implements InsertTypeInterface
 {
     /**
      * @var string
