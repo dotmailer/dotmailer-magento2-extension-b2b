@@ -35,6 +35,7 @@ composer require dotdigital/dotdigital-magento2-extension-b2b
 
 ##### Improvements
 - The B2B quote data migration now inherits from a new abstract class in the Email module.
+- PHP 7.2 is now a minimum requirement for running this module.
 
 ### 1.5.1
 
