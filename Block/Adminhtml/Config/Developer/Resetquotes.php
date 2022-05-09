@@ -2,11 +2,13 @@
 
 namespace Dotdigitalgroup\B2b\Block\Adminhtml\Config\Developer;
 
-use Dotdigitalgroup\Email\Block\Adminhtml\Config\Developer\AbstractDeveloper;
+use Dotdigitalgroup\Email\Block\Adminhtml\Config\AbstractButton;
 
-class Resetquotes extends AbstractDeveloper
+class Resetquotes extends AbstractButton
 {
     /**
+     * Get disabled.
+     *
      * @return bool
      */
     protected function getDisabled()
@@ -15,6 +17,8 @@ class Resetquotes extends AbstractDeveloper
     }
 
     /**
+     * Get button label.
+     *
      * @return \Magento\Framework\Phrase|string
      */
     protected function getButtonLabel()
@@ -23,6 +27,8 @@ class Resetquotes extends AbstractDeveloper
     }
 
     /**
+     * Get button url.
+     *
      * @return string
      */
     protected function getButtonUrl()
