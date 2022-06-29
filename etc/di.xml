@@ -4,11 +4,11 @@
         <plugin name="ddg_b2b_data_field_plugin"
                 type="Dotdigitalgroup\B2b\Plugin\DataFieldPlugin" sortOrder="1"/>
     </type>
-    <type name="Dotdigitalgroup\Email\Model\Apiconnector\CustomerDataFieldProvider">
+    <type name="Dotdigitalgroup\Email\Model\Customer\CustomerDataFieldProvider">
         <plugin name="ddg_b2b_customer_datafield_provider_plugin"
                 type="Dotdigitalgroup\B2b\Plugin\CustomerDataFieldProviderPlugin"/>
     </type>
-    <type name="Dotdigitalgroup\Email\Model\Apiconnector\Customer">
+    <type name="Dotdigitalgroup\Email\Model\Connector\Customer">
         <plugin name="ddg_b2b_customer_plugin"
                 type="Dotdigitalgroup\B2b\Plugin\CustomerPlugin"/>
     </type>
