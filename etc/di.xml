@@ -8,7 +8,7 @@
         <plugin name="ddg_b2b_customer_datafield_provider_plugin"
                 type="Dotdigitalgroup\B2b\Plugin\CustomerDataFieldProviderPlugin"/>
     </type>
-    <type name="Dotdigitalgroup\Email\Model\Connector\Customer">
+    <type name="Dotdigitalgroup\Email\Model\Connector\ContactData\Customer">
         <plugin name="ddg_b2b_customer_plugin"
                 type="Dotdigitalgroup\B2b\Plugin\CustomerPlugin"/>
     </type>
