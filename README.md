@@ -9,8 +9,8 @@ This module is dedicated to Magento merchants that also sell to other businesses
 - Requires Magento 2.3+
 - Requires `magento/module-b2b`
 - Requires Dotdigital extension versions:
-  - `Dotdigitalgroup_Email` 4.18.0+
-  - `Dotdigitalgroup_Enterprise` 1.8.0+ (if used)
+  - `Dotdigitalgroup_Email` 4.19.0+
+  - `Dotdigitalgroup_Enterprise` 1.10.0+ (if used)
 
 ## Installation
 We encourage merchants to install our core modules via our combined **Dotdigital - Marketing Automation** extension, available on the [Magento Marketplace](https://marketplace.magento.com/dotdigital-dotdigital-magento2-os-package.html).
