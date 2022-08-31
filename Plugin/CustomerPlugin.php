@@ -8,7 +8,7 @@ use Dotdigitalgroup\B2b\Model\Company\SalesRepresentative;
 use Dotdigitalgroup\B2b\Model\SharedCatalog\Config;
 use Dotdigitalgroup\Email\Helper\Data as EmailHelper;
 use Dotdigitalgroup\Email\Logger\Logger;
-use Dotdigitalgroup\Email\Model\Apiconnector\Customer;
+use Dotdigitalgroup\Email\Model\Connector\ContactData\Customer;
 use Magento\Company\Model\Company;
 use Magento\Customer\Model\Customer as CustomerModel;
 use Magento\Customer\Model\ResourceModel\GroupRepository;

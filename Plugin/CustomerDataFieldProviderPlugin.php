@@ -3,7 +3,7 @@
 namespace Dotdigitalgroup\B2b\Plugin;
 
 use Dotdigitalgroup\B2b\Helper\Data;
-use Dotdigitalgroup\Email\Model\Apiconnector\CustomerDataFieldProvider;
+use Dotdigitalgroup\Email\Model\Customer\CustomerDataFieldProvider;
 
 class CustomerDataFieldProviderPlugin
 {
