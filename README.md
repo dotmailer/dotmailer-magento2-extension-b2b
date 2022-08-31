@@ -31,6 +31,11 @@ composer require dotdigital/dotdigital-magento2-extension-b2b
 
 ## Changelog
 
+### 1.6.0
+
+##### Improvements 
+- We updated some class references in line with the contact sync refactor in the Email module.
+
 ### 1.5.3
 
 ##### Improvements
