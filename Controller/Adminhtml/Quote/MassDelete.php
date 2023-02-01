@@ -4,7 +4,7 @@ namespace Dotdigitalgroup\B2b\Controller\Adminhtml\Quote;
 
 use Dotdigitalgroup\B2b\Model\ResourceModel\NegotiableQuote;
 use Dotdigitalgroup\B2b\Model\ResourceModel\NegotiableQuote\CollectionFactory;
-use Dotdigitalgroup\Email\Helper\MassDeleteCsrf;
+use Dotdigitalgroup\Email\Controller\Adminhtml\MassDeleteCsrf;
 use Magento\Backend\App\Action\Context;
 use Magento\Ui\Component\MassAction\Filter;
 

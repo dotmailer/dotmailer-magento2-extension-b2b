@@ -15,7 +15,7 @@
   },
   "require": {
     "php": "^7.2||^8.0",
-    "dotdigital/dotdigital-magento2-extension": "^4.19.0",
+    "dotdigital/dotdigital-magento2-extension": "^4.20.0",
     "magento/framework": ">=101 <104",
     "magento/module-store": ">=100 <102",
     "magento/module-b2b": ">=100 <102",

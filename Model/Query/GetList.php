@@ -3,14 +3,15 @@
 namespace Dotdigitalgroup\B2b\Model\Query;
 
 use Dotdigitalgroup\B2b\Model\ResourceModel\NegotiableQuote\CollectionFactory;
-use Magento\Framework\Api\SearchCriteriaInterface;
-use Magento\Framework\Api\SearchResultsFactory;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
+use Magento\Framework\Api\SearchCriteriaInterface;
+use Magento\Framework\Api\SearchResultsInterface;
+use Magento\Framework\Api\SearchResultsInterfaceFactory;
 
 class GetList
 {
     /**
-     * @var SearchResultsFactory
+     * @var SearchResultsInterfaceFactory
      */
     private $searchResultsFactory;
 
@@ -24,8 +25,13 @@ class GetList
      */
     private $collectionProcessor;
 
+    /**
+     * @param SearchResultsInterfaceFactory $searchResultsFactory
+     * @param CollectionFactory $collectionFactory
+     * @param CollectionProcessorInterface $collectionProcessor
+     */
     public function __construct(
-        SearchResultsFactory $searchResultsFactory,
+        SearchResultsInterfaceFactory $searchResultsFactory,
         CollectionFactory $collectionFactory,
         CollectionProcessorInterface $collectionProcessor
     ) {
@@ -34,13 +40,17 @@ class GetList
         $this->collectionProcessor = $collectionProcessor;
     }
 
+    /**
+     * Get list.
+     *
+     * @param SearchCriteriaInterface $searchCriteria
+     * @return SearchResultsInterface
+     */
     public function getList(SearchCriteriaInterface $searchCriteria)
     {
-        /** @var \Magento\Framework\Api\SearchResults $searchResult */
         $searchResult = $this->searchResultsFactory->create();
         $searchResult->setSearchCriteria($searchCriteria);
 
-        /** @var \Dotdigitalgroup\B2b\Model\ResourceModel\NegotiableQuote\Collection $collection */
         $collection = $this->collectionFactory->create();
 
         $this->collectionProcessor->process($searchCriteria, $collection);
