@@ -31,6 +31,11 @@ composer require dotdigital/dotdigital-magento2-extension-b2b
 
 ## Changelog
 
+### 1.7.0
+
+##### Improvements
+- We replaced usages of `SearchResultsFactory` and `SearchResults` classes with `SearchResultsInterfaceFactory` and `SearchResultsInterface` respectively.
+
 ### 1.6.0
 
 ##### Improvements 
