@@ -30,7 +30,9 @@
     "magento/module-catalog": ">=101 <105",
     "magento/module-quote": ">=101 <102",
     "magento/module-bundle": ">=100 <102",
-    "magento/module-ui": ">=100 <102"
+    "magento/module-reports": ">=100 <102",
+    "magento/module-ui": ">=100 <102",
+    "psr/log": "^1.0"
   },
   "autoload": {
     "files": [ "registration.php" ],
