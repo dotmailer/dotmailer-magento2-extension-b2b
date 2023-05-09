@@ -31,6 +31,11 @@ composer require dotdigital/dotdigital-magento2-extension-b2b
 
 ## Changelog
 
+### 1.7.1
+
+##### Improvements
+- We've updated the module's composer requirements in line with the core code it uses.
+
 ### 1.7.0
 
 ##### Improvements
