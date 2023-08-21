@@ -1,4 +1,4 @@
-# Dotdigital for Magento B2B
+# Dotdigital for Adobe Commerce B2B
 [![Packagist Version](https://img.shields.io/packagist/v/dotdigital/dotdigital-magento2-extension-b2b?color=green&label=stable)](https://github.com/dotmailer/dotmailer-magento2-extension-b2b/releases)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE.md)
   
