@@ -14,7 +14,7 @@
     "dotmailer/dotmailer-magento2-extension-b2b": "*"
   },
   "require": {
-    "php": "^7.2||^8.0",
+    "php": "^7.4||^8.0",
     "dotdigital/dotdigital-magento2-extension": "^4.20.0",
     "magento/framework": ">=101 <104",
     "magento/module-store": ">=100 <102",
@@ -28,7 +28,7 @@
     "magento/module-user": ">=100 <102",
     "magento/module-config": ">=100 <103",
     "magento/module-catalog": ">=101 <105",
-    "magento/module-quote": ">=101 <102",
+    "magento/module-quote": ">=101 <103",
     "magento/module-bundle": ">=100 <102",
     "magento/module-reports": ">=100 <102",
     "magento/module-ui": ">=100 <102",
