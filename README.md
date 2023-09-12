@@ -1,4 +1,4 @@
-# Dotdigital for Magento B2B
+# Dotdigital for Adobe Commerce B2B
 [![Packagist Version](https://img.shields.io/packagist/v/dotdigital/dotdigital-magento2-extension-b2b?color=green&label=stable)](https://github.com/dotmailer/dotmailer-magento2-extension-b2b/releases)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE.md)
   
@@ -30,6 +30,11 @@ composer require dotdigital/dotdigital-magento2-extension-b2b
 - Enable Shared Catalog and B2B Quote in **General > B2B Features** to use the related syncs.
 
 ## Changelog
+
+### 1.8.0
+
+##### What's new
+- The module now requires PHP 7.4+ and Magento 2.3.7+.
 
 ### 1.7.1
 
