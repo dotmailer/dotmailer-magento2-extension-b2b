@@ -31,6 +31,11 @@ composer require dotdigital/dotdigital-magento2-extension-b2b
 
 ## Changelog
 
+### 1.8.0
+
+##### What's new
+- The module now requires PHP 7.4+ and Magento 2.3.7+.
+
 ### 1.7.1
 
 ##### Improvements
