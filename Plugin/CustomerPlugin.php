@@ -87,7 +87,9 @@ class CustomerPlugin
 
         if ($company = $this->helper->getCompanyForCustomer($customer)) {
             $customer->setCompany($company->getCompanyName());
-            $customer->setCompanyStatus(ConfigInterface::COMPANY_STATUS_LABELS[$company->getStatus()]);
+            $customer->setCompanyStatus(
+                ConfigInterface::COMPANY_STATUS_LABELS[$company->getStatus()] ?? $company->getStatus()
+            );
             $customer->setCustomerType(
                 $this->isCompanyAdmin($customer, $company)
                     ? ConfigInterface::CUSTOMER_TYPE_COMPANY_ADMIN
