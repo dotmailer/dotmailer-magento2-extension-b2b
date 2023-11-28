@@ -31,6 +31,11 @@ composer require dotdigital/dotdigital-magento2-extension-b2b
 
 ## Changelog
 
+### 1.8.1 
+
+##### Improvements
+- Our CustomerPlugin does not now require company statuses to match fixed values.
+
 ### 1.8.0
 
 ##### What's new
