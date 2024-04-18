@@ -31,6 +31,11 @@ composer require dotdigital/dotdigital-magento2-extension-b2b
 
 ## Changelog
 
+### 1.8.2
+
+##### Bug fixes
+- Our requirement for `psr/log` has been updated for Magento 2.4.7.
+
 ### 1.8.1 
 
 ##### Improvements

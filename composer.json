@@ -2,7 +2,7 @@
   "name": "dotdigital/dotdigital-magento2-extension-b2b",
   "description": "Dotdigital for Adobe Commerce: B2B module",
   "type": "magento2-module",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "license": "MIT",
   "repositories": [
     {
@@ -32,7 +32,7 @@
     "magento/module-bundle": ">=100 <102",
     "magento/module-reports": ">=100 <102",
     "magento/module-ui": ">=100 <102",
-    "psr/log": "^1.0"
+    "psr/log": "^1 || ^2 || ^3"
   },
   "autoload": {
     "files": [ "registration.php" ],
