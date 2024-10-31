@@ -135,7 +135,7 @@ class NegotiableQuote implements SyncInterface
 
         if ($this->countNegotiableQuotes) {
             $message = '----------- B2B Quotes sync ----------- : ' .
-                gmdate('H:i:s', microtime(true) - $this->start) .
+                gmdate('H:i:s', (int) microtime(true) - $this->start) .
                 ', Total synced = ' . $this->countNegotiableQuotes;
             $this->logger->info($message);
         }
