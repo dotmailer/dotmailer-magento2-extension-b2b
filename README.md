@@ -9,7 +9,7 @@ This module is dedicated to Magento merchants that also sell to other businesses
 - Requires Magento 2.3+
 - Requires `magento/module-b2b`
 - Requires Dotdigital extension versions:
-  - `Dotdigitalgroup_Email` 4.20.0+
+  - `Dotdigitalgroup_Email` 4.22.0+
   - `Dotdigitalgroup_Enterprise` 1.10.0+ (if used)
 
 ## Installation
@@ -30,6 +30,11 @@ composer require dotdigital/dotdigital-magento2-extension-b2b
 - Enable Shared Catalog and B2B Quote in **General > B2B Features** to use the related syncs.
 
 ## Changelog
+
+### 1.8.3
+
+##### Bug fixes
+- We added a plugin to fix processing of in-progress B2B_Quotes imports.
 
 ### 1.8.2
 
