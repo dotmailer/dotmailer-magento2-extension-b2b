@@ -31,6 +31,11 @@ composer require dotdigital/dotdigital-magento2-extension-b2b
 
 ## Changelog
 
+### 1.8.4
+
+##### Improvements
+- We updated our packages in composer.json for compatibility with magento/extension-b2b v1.5.0
+
 ### 1.8.3
 
 ##### Bug fixes
