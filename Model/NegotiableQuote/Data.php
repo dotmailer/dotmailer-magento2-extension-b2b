@@ -67,57 +67,57 @@ class Data
     private $logger;
 
     /**
-     * @var
+     * @var int
      */
     private $id;
 
     /**
-     * @var
+     * @var string
      */
     private $name;
 
     /**
-     * @var
+     * @var string
      */
     private $email;
 
     /**
-     * @var
+     * @var string
      */
     private $company;
 
     /**
-     * @var
+     * @var string
      */
     private $createdAt;
 
     /**
-     * @var
+     * @var string
      */
     private $updatedAt;
 
     /**
-     * @var
+     * @var float
      */
     private $quoteTotal;
 
     /**
-     * @var
+     * @var float
      */
     private $quoteNegotiated;
 
     /**
-     * @var
+     * @var string
      */
     private $salesRep;
 
     /**
-     * @var
+     * @var string
      */
     private $currency;
 
     /**
-     * @var
+     * @var string
      */
     private $status;
 

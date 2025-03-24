@@ -31,6 +31,11 @@ composer require dotdigital/dotdigital-magento2-extension-b2b
 
 ## Changelog
 
+### 1.8.5
+
+##### Improvements
+- We updated our code for compatibility with PHP 8.4.
+
 ### 1.8.4
 
 ##### Improvements

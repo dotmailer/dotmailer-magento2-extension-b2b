@@ -94,7 +94,7 @@ class NegotiableQuote implements SyncInterface
      * @return void $response
      * @see SyncInterface
      */
-    public function sync(\DateTime $from = null)
+    public function sync(?\DateTime $from = null)
     {
         $this->start = microtime(true);
 

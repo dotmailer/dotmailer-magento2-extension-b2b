@@ -33,8 +33,8 @@ class NegotiableQuote extends AbstractModel implements NegotiableQuoteInterface
         \Magento\Framework\Stdlib\DateTime $dateTime,
         Context $context,
         \Magento\Framework\Registry $registry,
-        AbstractResource $resource = null,
-        AbstractDb $resourceCollection = null,
+        ?AbstractResource $resource = null,
+        ?AbstractDb $resourceCollection = null,
         array $data = []
     ) {
         $this->dateTime = $dateTime;
