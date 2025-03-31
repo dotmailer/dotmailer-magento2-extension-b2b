@@ -43,6 +43,8 @@ class NegotiableQuoteRepository implements NegotiableQuoteRepositoryInterface
     }
 
     /**
+     * Get list.
+     *
      * @param SearchCriteriaInterface $searchCriteria
      * @return \Magento\Framework\Api\SearchResults
      */
@@ -52,24 +54,36 @@ class NegotiableQuoteRepository implements NegotiableQuoteRepositoryInterface
     }
 
     /**
-     * @param $id
+     * Get by id.
+     *
+     * @param int $id
      * @return NegotiableQuoteInterface
      */
     public function getById($id)
     {
-        return $this->negotiableQuoteFactory->create()->load($id, 'id');
+        $negotiableQuote = $this->negotiableQuoteFactory->create();
+        $this->negotiableQuoteResourceFactory->create()
+            ->load($negotiableQuote, $id, 'id');
+        return $negotiableQuote;
     }
 
     /**
-     * @param $quoteId
+     * Get by quote id.
+     *
+     * @param int $quoteId
      * @return NegotiableQuoteInterface
      */
     public function getByQuoteId($quoteId)
     {
-        return $this->negotiableQuoteFactory->create()->load($quoteId, 'quote_id');
+        $negotiableQuote = $this->negotiableQuoteFactory->create();
+        $this->negotiableQuoteResourceFactory->create()
+            ->load($negotiableQuote, $quoteId, 'quote_id');
+        return $negotiableQuote;
     }
 
     /**
+     * Set imported by ids.
+     *
      * @param array $ids
      */
     public function setImportedByIds($ids)
@@ -80,7 +94,9 @@ class NegotiableQuoteRepository implements NegotiableQuoteRepositoryInterface
     }
 
     /**
-     * @param $quoteId
+     * Set unimported.
+     *
+     * @param int $quoteId
      */
     public function setUnimported($quoteId)
     {
@@ -90,8 +106,10 @@ class NegotiableQuoteRepository implements NegotiableQuoteRepositoryInterface
     }
 
     /**
-     * @param $expirationDate
-     * @param $id
+     * Set expiration date by id.
+     *
+     * @param string $expirationDate
+     * @param int $id
      */
     public function setExpirationDateById($expirationDate, $id)
     {
@@ -101,6 +119,8 @@ class NegotiableQuoteRepository implements NegotiableQuoteRepositoryInterface
     }
 
     /**
+     * Reset.
+     *
      * @param null|string $from
      * @param null|string $to
      * @return int
@@ -113,6 +133,8 @@ class NegotiableQuoteRepository implements NegotiableQuoteRepositoryInterface
     }
 
     /**
+     * Save.
+     *
      * @param NegotiableQuoteInterface $quote
      * @throws \Magento\Framework\Exception\AlreadyExistsException
      */

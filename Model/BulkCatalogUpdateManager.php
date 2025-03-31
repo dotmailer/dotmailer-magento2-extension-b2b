@@ -4,7 +4,8 @@ namespace Dotdigitalgroup\B2b\Model;
 
 use Dotdigitalgroup\B2b\Model\BulkCatalogUpdaterFactory;
 use Dotdigitalgroup\B2b\Model\SharedCatalog\Config;
-use Magento\Bundle\Pricing\Price\TierPrice;
+use Magento\Catalog\Api\Data\TierPriceInterface;
+use Magento\Catalog\Pricing\Price\TierPrice;
 
 class BulkCatalogUpdateManager
 {
@@ -36,12 +37,13 @@ class BulkCatalogUpdateManager
     }
 
     /**
-     * @param array $pricesData
+     * Add skus to bulk update.
+     *
+     * @param TierPriceInterface[] $pricesData
      */
     public function addProductSkusToBulkUpdate(array $pricesData)
     {
         foreach ($pricesData as $tierPrice) {
-            /** @var TierPrice $tierPrice */
             if (!$this->sharedCatalogConfig->isSharedCatalogSyncEnabled($tierPrice->getWebsiteId())) {
                 continue;
             }
@@ -50,7 +52,7 @@ class BulkCatalogUpdateManager
     }
 
     /**
-     *
+     * Complete update.
      */
     public function completeUpdate()
     {
@@ -59,6 +61,8 @@ class BulkCatalogUpdateManager
     }
 
     /**
+     * Get bulk catalog updater.
+     *
      * @return BulkCatalogUpdater
      */
     private function getBulkCatalogUpdater()

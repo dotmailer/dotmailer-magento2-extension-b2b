@@ -6,7 +6,7 @@ use Dotdigitalgroup\B2b\Helper\ConfigInterface;
 
 interface DotdigitalConfigInterface
 {
-    const CONFIGURATION_PATHS = [
+    public const CONFIGURATION_PATHS = [
         ConfigInterface::XML_PATH_CONNECTOR_B2B_CUSTOMER_TYPE,
         ConfigInterface::XML_PATH_CONNECTOR_B2B_COMPANY,
         ConfigInterface::XML_PATH_CONNECTOR_B2B_COMPANY_STATUS,

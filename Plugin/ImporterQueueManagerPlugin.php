@@ -8,6 +8,8 @@ use Dotdigitalgroup\Email\Model\Sync\Importer\ImporterQueueManager;
 class ImporterQueueManagerPlugin
 {
     /**
+     * Before get bulk queue.
+     *
      * @param ImporterQueueManager $importerQueueManager
      * @param array $additionalImportTypes
      * @return array

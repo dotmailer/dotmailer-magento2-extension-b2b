@@ -47,6 +47,7 @@ class Config
 
     /**
      * Check if Sync Settings > B2B Quote Enabled is set to Yes.
+     *
      * Note that B2B Features > Enable B2B Quote must also be enabled, so we check this as well.
      *
      * @param int $websiteId

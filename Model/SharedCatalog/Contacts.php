@@ -22,6 +22,8 @@ class Contacts
     }
 
     /**
+     * Get contacts for a shared catalog.
+     *
      * @param SharedCatalogInterface $sharedCatalog
      * @return ContactCollection
      */

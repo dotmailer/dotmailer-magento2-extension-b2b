@@ -40,6 +40,7 @@ class Config
 
     /**
      * Check if Sync Settings > Shared Catalog Enabled is set to Yes.
+     *
      * Note that B2B Features > Shared Catalogs must also be enabled, so we check this as well.
      *
      * @param int $websiteId

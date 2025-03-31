@@ -9,7 +9,7 @@ use Dotdigitalgroup\B2b\Model\SharedCatalog\Config;
 
 class DataFieldPlugin
 {
-    const DATA_MAPPING_PATH_PREFIX = 'b2b_extra_data';
+    private const DATA_MAPPING_PATH_PREFIX = 'b2b_extra_data';
 
     /**
      * @var Config
@@ -34,6 +34,8 @@ class DataFieldPlugin
     }
 
     /**
+     * Before get contact datafields.
+     *
      * @param Datafield $dataField
      * @param bool $withXmlPathPrefixes
      * @return null

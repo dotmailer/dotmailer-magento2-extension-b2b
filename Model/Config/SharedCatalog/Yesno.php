@@ -37,6 +37,8 @@ class Yesno extends \Magento\Config\Block\System\Config\Form\Field
     }
 
     /**
+     * Get element html.
+     *
      * @param \Magento\Framework\Data\Form\Element\AbstractElement $element
      *
      * @return string

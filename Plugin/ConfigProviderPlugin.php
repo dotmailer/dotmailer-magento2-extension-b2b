@@ -25,9 +25,11 @@ class ConfigProviderPlugin
     }
 
     /**
+     * After get config by store.
+     *
      * @param DotdigitalConfig $subject
-     * @param $result
-     * @param string|int $storeId
+     * @param array $result
+     * @param int $storeId
      * @return array
      */
     public function afterGetConfigByStore(DotdigitalConfig $subject, $result, $storeId)

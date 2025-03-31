@@ -21,6 +21,13 @@ class NegotiableQuote extends \Magento\Framework\Model\ResourceModel\Db\Abstract
         $this->_init(Schema::EMAIL_B2B_QUOTE_TABLE, 'id');
     }
 
+    /**
+     * NegotiableQuote constructor.
+     *
+     * @param Context $context
+     * @param Logger $logger
+     * @param string $connectionName
+     */
     public function __construct(
         Context $context,
         Logger $logger,
@@ -31,6 +38,8 @@ class NegotiableQuote extends \Magento\Framework\Model\ResourceModel\Db\Abstract
     }
 
     /**
+     * Set imported by ids.
+     *
      * @param array $ids
      */
     public function setImportedByIds($ids)
@@ -53,7 +62,9 @@ class NegotiableQuote extends \Magento\Framework\Model\ResourceModel\Db\Abstract
     }
 
     /**
-     * @param $quoteId
+     * Set unimported.
+     *
+     * @param int $quoteId
      */
     public function setUnimported($quoteId)
     {
@@ -77,8 +88,10 @@ class NegotiableQuote extends \Magento\Framework\Model\ResourceModel\Db\Abstract
     }
 
     /**
-     * @param $expirationDate
-     * @param $quoteId
+     * Set expiration date by quote id.
+     *
+     * @param string $expirationDate
+     * @param int $quoteId
      */
     public function setExpirationDateById($expirationDate, $quoteId)
     {

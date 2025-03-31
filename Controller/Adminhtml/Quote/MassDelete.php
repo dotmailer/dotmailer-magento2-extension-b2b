@@ -13,7 +13,7 @@ class MassDelete extends MassDeleteCsrf
     /**
      * @see _isAllowed()
      */
-    const ADMIN_RESOURCE = 'Dotdigitalgroup_B2b::quotes';
+    public const ADMIN_RESOURCE = 'Dotdigitalgroup_B2b::quotes';
 
     /**
      * MassDelete constructor.

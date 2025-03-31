@@ -24,8 +24,10 @@ class DataMigrationTypeProviderPlugin
     }
 
     /**
+     * After get types.
+     *
      * @param DataMigrationTypeProvider $dataMigrationTypeProvider
-     * @param $result
+     * @param array $result
      * @param string|null $table
      * @return array
      */

@@ -113,6 +113,8 @@ class SharedCatalogSaveConfigurationPlugin
     }
 
     /**
+     * Is shared catalog sync enabled for the selected website.
+     *
      * @return bool
      */
     private function isSharedCatalogSyncEnabledForSelectedWebsite()

@@ -33,6 +33,8 @@ class CompanyUpdated implements ObserverInterface
     }
 
     /**
+     * Execute observer.
+     *
      * @param Observer $observer
      * @throws \Magento\Framework\Exception\LocalizedException
      */
