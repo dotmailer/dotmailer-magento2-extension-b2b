@@ -6,8 +6,8 @@ use Dotdigitalgroup\Email\Model\Connector\Module;
 
 class ModulePlugin
 {
-    const MODULE_NAME = 'Dotdigitalgroup_B2b';
-    const MODULE_DESCRIPTION = 'Dotdigital for Adobe Commerce B2B';
+    private const MODULE_NAME = 'Dotdigitalgroup_B2b';
+    private const MODULE_DESCRIPTION = 'Dotdigital for Adobe Commerce B2B';
 
     /**
      * @var Module
@@ -23,6 +23,8 @@ class ModulePlugin
     }
 
     /**
+     * Before fetch active modules.
+     *
      * @param Module $module
      * @param array $modules
      * @return array

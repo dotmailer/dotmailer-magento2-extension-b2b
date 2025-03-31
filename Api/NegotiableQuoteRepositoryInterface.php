@@ -8,48 +8,64 @@ use Magento\Framework\Api\SearchCriteriaInterface;
 interface NegotiableQuoteRepositoryInterface
 {
     /**
+     * Save.
+     *
      * @param NegotiableQuoteInterface $quote
      */
     public function save(NegotiableQuoteInterface $quote);
 
     /**
-     * @param $id
+     * Get by id.
+     *
+     * @param int $id
      * @return NegotiableQuoteInterface
      */
     public function getById($id);
 
     /**
-     * @param $quoteId
+     * Get by quote id.
+     *
+     * @param int $quoteId
      * @return NegotiableQuoteInterface
      */
     public function getByQuoteId($quoteId);
 
     /**
-     * @param null $from
-     * @param null $to
+     * Reset.
+     *
+     * @param null|string $from
+     * @param null|string $to
      * @return int
      */
     public function reset($from = null, $to = null);
 
     /**
+     * Get list.
+     *
      * @param SearchCriteriaInterface $searchCriteria
      * @return \Magento\Framework\Api\SearchResults
      */
     public function getList(SearchCriteriaInterface $searchCriteria);
 
     /**
-     * @param $quoteId
+     * Set unimported.
+     *
+     * @param int $quoteId
      */
     public function setUnimported($quoteId);
 
     /**
+     * Set imported by ids.
+     *
      * @param array $ids
      */
     public function setImportedByIds($ids);
 
     /**
-     * @param $expirationDate
-     * @param $id
+     * Set expiration date by id.
+     *
+     * @param string $expirationDate
+     * @param int $id
      */
     public function setExpirationDateById($expirationDate, $id);
 }

@@ -40,6 +40,8 @@ class Comment extends AbstractBlock implements CommentInterface
     }
 
     /**
+     * Get comment text.
+     *
      * @param string $elementValue
      * @return string|null
      */

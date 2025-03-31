@@ -48,6 +48,8 @@ class Data extends AbstractHelper
     }
 
     /**
+     * Get B2B attributes.
+     *
      * @param WebsiteInterface $website
      * @return array
      */
@@ -63,6 +65,8 @@ class Data extends AbstractHelper
     }
 
     /**
+     * Get company for customer.
+     *
      * @param Customer $customer
      * @return CompanyInterface
      */
@@ -72,6 +76,8 @@ class Data extends AbstractHelper
     }
 
     /**
+     * Get credit data for company.
+     *
      * @param CompanyInterface $company
      * @return \Magento\CompanyCredit\Api\Data\CreditDataInterface
      */
@@ -81,6 +87,8 @@ class Data extends AbstractHelper
     }
 
     /**
+     * Get company admin.
+     *
      * @param CompanyInterface $company
      * @return \Magento\Customer\Api\Data\CustomerInterface|null
      */

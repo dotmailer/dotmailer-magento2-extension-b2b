@@ -2,6 +2,9 @@
 
 namespace Dotdigitalgroup\B2b\Plugin;
 
+use Magento\Catalog\Model\Product;
+use Magento\ConfigurableProduct\Model\Product\Type\Configurable;
+
 class TierPriceFinderPlugin
 {
     /**
@@ -32,6 +35,15 @@ class TierPriceFinderPlugin
         $this->contextService = $contextService;
     }
 
+    /**
+     * Around get tier prices.
+     *
+     * @param \Dotdigitalgroup\Email\Model\Product\TierPriceFinder $priceFinder
+     * @param callable $proceed
+     * @param Product $product
+     * @return array
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
     public function aroundGetTierPrices(
         \Dotdigitalgroup\Email\Model\Product\TierPriceFinder $priceFinder,
         callable $proceed,
@@ -47,7 +59,10 @@ class TierPriceFinderPlugin
             case 'bundle':
                 return $this->getTierPriceOfBundledProduct($product);
             case 'configurable':
-                return $this->getMinTierPriceOfChildProducts($product->getTypeInstance()->getUsedProducts($product));
+                /** @var Product $product */
+                $configurableProductInstance = $product->getTypeInstance();
+                /** @var Configurable $configurableProductInstance */
+                return $this->getMinTierPriceOfChildProducts($configurableProductInstance->getUsedProducts($product));
             case 'grouped':
                 return $prices;
             default:
@@ -57,7 +72,9 @@ class TierPriceFinderPlugin
     }
 
     /**
-     * @param $product
+     * Get tier prices of simple product.
+     *
+     * @param Product $product
      * @return array
      */
     private function getTierPricesOfSimpleProduct($product)
@@ -67,8 +84,8 @@ class TierPriceFinderPlugin
             $count = 0;
             foreach ($this->getTierPricesKeys($product) as $pointer) {
                 $tierPrices = $product->getTierPrices()[$pointer];
-                $finalPrice = $tierPrices->getData('value');
-                $quantity = (int)$tierPrices->getData('qty');
+                $finalPrice = $tierPrices->getValue();
+                $quantity = (int)$tierPrices->getQty();
                 $percentage = $tierPrices->getExtensionAttributes()
                     ->getPercentageValue();
                 $type = $this->getPercentageType($percentage);
@@ -79,7 +96,9 @@ class TierPriceFinderPlugin
     }
 
     /**
-     * @param $childProducts
+     * Get minimum tier price of child products.
+     *
+     * @param array $childProducts
      * @return array
      */
     private function getMinTierPriceOfChildProducts($childProducts)
@@ -91,10 +110,13 @@ class TierPriceFinderPlugin
             //Assume all children(simple) will have the same tier price. So just grab the first
             return $this->getTierPricesOfSimpleProduct($childProduct);
         }
+        return [];
     }
 
     /**
-     * @param $product
+     * Get tier price of bundled product.
+     *
+     * @param Product $product
      * @return array
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
@@ -106,8 +128,8 @@ class TierPriceFinderPlugin
         $count = 0;
         foreach ($this->getTierPricesKeys($product) as $pointer) {
             $tierPrices = $product->getTierPrices()[$pointer];
-            $percentage = $tierPrices->getData('extension_attributes')->getPercentageValue();
-            $quantity = (int)$tierPrices->getData('qty');
+            $percentage = $tierPrices->getExtensionAttributes()->getPercentageValue();
+            $quantity = (int)$tierPrices->getQty();
             $type = $this->getPercentageType($percentage);
             $tempArr = [];
             $price = [];
@@ -128,14 +150,16 @@ class TierPriceFinderPlugin
     }
 
     /**
-     * @param $product
+     * Get keys of valid tier prices.
+     *
+     * @param Product $product
      * @return array
      */
     private function getTierPricesKeys($product)
     {
         $pointers = [];
         foreach ($product->getTierPrices() as $key => $prices) {
-            if ($prices->getData('customer_group_id') == $this->contextService->getCustomerGroupId()) {
+            if ($prices->getCustomerGroupId() == $this->contextService->getCustomerGroupId()) {
                 $pointers[] = $key;
             }
         }
@@ -143,12 +167,14 @@ class TierPriceFinderPlugin
     }
 
     /**
-     * @param $finalPrice
-     * @param $quantity
-     * @param $percentage
-     * @param $type
-     * @param $count
-     * @param $prices
+     * Set prices.
+     *
+     * @param float $finalPrice
+     * @param int $quantity
+     * @param string|null $percentage
+     * @param string $type
+     * @param int $count
+     * @param array $prices
      */
     private function setPrices($finalPrice, $quantity, $percentage, $type, &$count, &$prices)
     {
@@ -160,7 +186,9 @@ class TierPriceFinderPlugin
     }
 
     /**
-     * @param $percentage
+     * Get percentage type.
+     *
+     * @param string|null $percentage
      * @return string
      */
     private function getPercentageType($percentage)

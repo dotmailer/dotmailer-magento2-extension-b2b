@@ -25,6 +25,8 @@ class BulkCatalogUpdater
     }
 
     /**
+     * Add product SKU.
+     *
      * @param string $productSku
      */
     public function addProductSku(string $productSku)

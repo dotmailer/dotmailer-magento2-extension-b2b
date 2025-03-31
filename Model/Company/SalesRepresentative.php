@@ -23,6 +23,8 @@ class SalesRepresentative
     }
 
     /**
+     * Get user by company.
+     *
      * @param Company $company
      * @return \Magento\Framework\DataObject
      */

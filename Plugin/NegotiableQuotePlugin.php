@@ -2,12 +2,12 @@
 
 namespace Dotdigitalgroup\B2b\Plugin;
 
-use Dotdigitalgroup\B2b\Api\Data\NegotiableQuoteInterface;
 use Dotdigitalgroup\B2b\Api\Data\NegotiableQuoteInterfaceFactory;
 use Dotdigitalgroup\B2b\Api\NegotiableQuoteRepositoryInterface;
 use Dotdigitalgroup\Email\Logger\Logger;
 use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Framework\Stdlib\DateTime;
+use Magento\NegotiableQuote\Api\Data\NegotiableQuoteInterface as MagentoNegotiableQuoteInterface;
 use Magento\NegotiableQuote\Model\NegotiableQuoteRepository;
 
 class NegotiableQuotePlugin
@@ -20,7 +20,7 @@ class NegotiableQuotePlugin
     /**
      * @var NegotiableQuoteInterfaceFactory
      */
-    private $negotiableQuoteInterface;
+    private $negotiableQuoteInterfaceFactory;
 
     /**
      * @var CustomerRepositoryInterface
@@ -37,24 +37,35 @@ class NegotiableQuotePlugin
      */
     private $logger;
 
+    /**
+     * NegotiableQuotePlugin constructor.
+     *
+     * @param NegotiableQuoteInterfaceFactory $negotiableQuoteInterfaceFactory
+     * @param NegotiableQuoteRepositoryInterface $negotiableQuoteRepository
+     * @param CustomerRepositoryInterface $customerRepositoryInterface
+     * @param DateTime $dateTime
+     * @param Logger $logger
+     */
     public function __construct(
-        NegotiableQuoteInterfaceFactory $negotiableQuoteInterface,
+        NegotiableQuoteInterfaceFactory $negotiableQuoteInterfaceFactory,
         NegotiableQuoteRepositoryInterface $negotiableQuoteRepository,
         CustomerRepositoryInterface $customerRepositoryInterface,
         DateTime $dateTime,
         Logger $logger
     ) {
         $this->negotiableQuoteRepository = $negotiableQuoteRepository;
-        $this->negotiableQuoteInterface = $negotiableQuoteInterface;
+        $this->negotiableQuoteInterfaceFactory = $negotiableQuoteInterfaceFactory;
         $this->customerRepositoryInterface = $customerRepositoryInterface;
         $this->dateTime = $dateTime;
         $this->logger = $logger;
     }
 
     /**
+     * After save.
+     *
      * @param NegotiableQuoteRepository $subject
      * @param bool $result
-     * @param NegotiableQuoteInterface $quoteModel
+     * @param MagentoNegotiableQuoteInterface $quoteModel
      * @return bool
      * @throws \Magento\Framework\Exception\LocalizedException
      * @throws \Magento\Framework\Exception\NoSuchEntityException
@@ -72,14 +83,16 @@ class NegotiableQuotePlugin
         }
 
         //If data already exists in quoteModel we do not need to create new record in email_b2b_quote table
-        if ($this->negotiableQuoteRepository->getByQuoteId($quoteModel->getQuoteId())->getData()) {
+        /** @var \Dotdigitalgroup\B2b\Model\NegotiableQuote $existingQuote */
+        $existingQuote = $this->negotiableQuoteRepository->getByQuoteId($quoteModel->getQuoteId());
+        if ($existingQuote->getData()) {
             return $result;
         }
 
         try {
             $customerObject = $this->customerRepositoryInterface->getById($quoteModel->getCreatorId());
 
-            $ddgQuote = $this->negotiableQuoteInterface->create()
+            $ddgQuote = $this->negotiableQuoteInterfaceFactory->create()
                 ->setQuoteId($quoteModel->getQuoteId())
                 ->setQuoteImported(0)
                 ->setWebsiteId($customerObject->getWebsiteId())
@@ -97,7 +110,9 @@ class NegotiableQuotePlugin
     }
 
     /**
-     * @param $quoteModel
+     * Determine if the quote should be marked unimported.
+     *
+     * @param MagentoNegotiableQuoteInterface $quoteModel
      * @return bool
      */
     private function toSetUnimported($quoteModel)
@@ -108,7 +123,8 @@ class NegotiableQuotePlugin
             $quoteModel->getStatus() === 'processing_by_admin'
         );
 
-        $hasData = $this->negotiableQuoteRepository->getByQuoteId($quoteModel->getQuoteId())->getData();
-        return $createdStatus && $hasData;
+        /** @var \Dotdigitalgroup\B2b\Model\NegotiableQuote $existingQuote */
+        $existingQuote = $this->negotiableQuoteRepository->getByQuoteId($quoteModel->getQuoteId());
+        return $createdStatus && $existingQuote->getData();
     }
 }

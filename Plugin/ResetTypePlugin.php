@@ -23,6 +23,8 @@ class ResetTypePlugin
     }
 
     /**
+     * Before set reset models.
+     *
      * @param Resetter $resetter
      * @param array $result
      * @return array[]

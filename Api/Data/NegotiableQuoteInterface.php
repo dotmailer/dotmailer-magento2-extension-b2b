@@ -4,43 +4,57 @@ namespace Dotdigitalgroup\B2b\Api\Data;
 
 interface NegotiableQuoteInterface
 {
-    const QUOTE_ID = 'quote_id';
-    const WEBSITE_ID = 'website_id';
-    const QUOTE_IMPORTED = 'quote_imported';
-    const EXPIRATION_DATE = 'expiration_date';
+    public const QUOTE_ID = 'quote_id';
+    public const WEBSITE_ID = 'website_id';
+    public const QUOTE_IMPORTED = 'quote_imported';
+    public const EXPIRATION_DATE = 'expiration_date';
 
     /**
+     * Get quote id.
+     *
      * @return int
      */
     public function getQuoteId();
 
     /**
+     * Get website id.
+     *
      * @return int
      */
     public function getWebsiteId();
 
     /**
+     * Get quote imported.
+     *
      * @return bool
      */
     public function getQuoteImported();
 
     /**
-     * @param $quoteId
+     * Set quote id.
+     *
+     * @param int $quoteId
      */
     public function setQuoteId($quoteId);
 
     /**
-     * @param $websiteId
+     * Set website id.
+     *
+     * @param int $websiteId
      */
     public function setWebsiteId($websiteId);
 
     /**
-     * @param $imported
+     * Set quote imported.
+     *
+     * @param bool $imported
      */
     public function setQuoteImported($imported);
 
     /**
-     * @param $expirationDate
+     * Set expiration date.
+     *
+     * @param string $expirationDate
      */
     public function setExpirationDate($expirationDate);
 }

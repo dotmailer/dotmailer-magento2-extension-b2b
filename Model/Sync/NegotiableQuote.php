@@ -2,6 +2,7 @@
 
 namespace Dotdigitalgroup\B2b\Model\Sync;
 
+use Dotdigitalgroup\B2b\Api\Data\NegotiableQuoteInterface;
 use Dotdigitalgroup\Email\Model\Sync\SyncInterface;
 use Dotdigitalgroup\Email\Helper\Data as EmailHelper;
 use Dotdigitalgroup\B2b\Model\NegotiableQuote\Config;
@@ -10,11 +11,13 @@ use Dotdigitalgroup\B2b\Api\NegotiableQuoteRepositoryInterface;
 use Dotdigitalgroup\Email\Model\ImporterFactory;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Dotdigitalgroup\Email\Logger\Logger;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
 
 class NegotiableQuote implements SyncInterface
 {
-    const QUOTE_WEBSITE_BATCH_SIZE = 100;
-    const IMPORT_TYPE_B2B_QUOTES = 'B2B_Quotes';
+    private const QUOTE_WEBSITE_BATCH_SIZE = 100;
+    public const IMPORT_TYPE_B2B_QUOTES = 'B2B_Quotes';
 
     /**
      * @var EmailHelper
@@ -90,8 +93,13 @@ class NegotiableQuote implements SyncInterface
     }
 
     /**
+     * Sync B2B Quotes.
+     *
      * @param \DateTime|null $from
-     * @return void $response
+     *
+     * @return void
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
      * @see SyncInterface
      */
     public function sync(?\DateTime $from = null)
@@ -113,9 +121,10 @@ class NegotiableQuote implements SyncInterface
 
             $dataToSync = [];
 
+            /** @var NegotiableQuoteInterface $item */
             foreach ($quotesForSync->getItems() as $item) {
                 $dataToSync[] = $this->quoteData->augment(
-                    $this->quoteRepository->getById($item->getId())
+                    $this->quoteRepository->getByQuoteId($item->getQuoteId())
                 );
             }
 
@@ -142,6 +151,8 @@ class NegotiableQuote implements SyncInterface
     }
 
     /**
+     * Get ids to set as imported.
+     *
      * @param array $dataToSync
      * @return array
      */
@@ -153,6 +164,8 @@ class NegotiableQuote implements SyncInterface
     }
 
     /**
+     * Fetch websites for sync.
+     *
      * @return array
      */
     private function fetchWebsitesForSync()

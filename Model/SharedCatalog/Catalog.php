@@ -75,8 +75,8 @@ class Catalog
     {
         $skus = [];
         $productCollection = $this->productCollectionFactory->create()
-            ->addFieldToFilter('entity_id', ['in' => $productIds])
-            ->addAttributeToSelect('sku');
+            ->addAttributeToSelect('sku')
+            ->addFieldToFilter('entity_id', ['in' => $productIds]);
 
         foreach ($productCollection as $item) {
             $skus[] = $item->getSku();
@@ -112,8 +112,8 @@ class Catalog
      * Note that shared catalogs are 1:1 with customer groups.
      * Returns an array of product items pulled from the shared_catalog_product_item table.
      *
-     * @param $productSkus
-     * @param $customerGroupId
+     * @param array $productSkus
+     * @param int $customerGroupId
      * @return array
      */
     public function getProductsItemsInSharedCatalog($productSkus, $customerGroupId)
@@ -128,7 +128,7 @@ class Catalog
     /**
      * Fetch actual product ids from an array of shared catalog items.
      *
-     * @param $productItems
+     * @param array $productItems
      * @return array
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */

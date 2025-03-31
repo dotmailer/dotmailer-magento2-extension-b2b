@@ -4,6 +4,7 @@ namespace Dotdigitalgroup\B2b\Plugin;
 
 use Dotdigitalgroup\B2b\Model\BulkCatalogUpdateManager;
 use Dotdigitalgroup\B2b\Model\BulkCatalogUpdater;
+use Magento\Catalog\Api\Data\TierPriceInterface;
 use Magento\SharedCatalog\Model\ResourceModel\ProductItem\Price\PriceProcessor;
 
 class SharedCatalogPriceProcessorPlugin
@@ -23,8 +24,10 @@ class SharedCatalogPriceProcessorPlugin
     }
 
     /**
+     * After create prices update.
+     *
      * @param PriceProcessor $priceProcessor
-     * @param array $pricesData
+     * @param TierPriceInterface[] $pricesData
      * @return array
      */
     public function afterCreatePricesUpdate(PriceProcessor $priceProcessor, array $pricesData)
@@ -34,8 +37,10 @@ class SharedCatalogPriceProcessorPlugin
     }
 
     /**
+     * After create prices delete.
+     *
      * @param PriceProcessor $priceProcessor
-     * @param array $pricesData
+     * @param TierPriceInterface[] $pricesData
      * @return array
      */
     public function afterCreatePricesDelete(PriceProcessor $priceProcessor, array $pricesData)

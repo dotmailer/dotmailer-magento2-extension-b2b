@@ -57,6 +57,8 @@ class StoreCatalogSyncerPlugin
     }
 
     /**
+     * After sync by store.
+     *
      * @param \Dotdigitalgroup\Email\Model\Sync\Catalog\StoreCatalogSyncer $storeCatalogSyncer
      * @param array $result
      * @param array $productsToProcess

@@ -21,12 +21,11 @@ class NegotiableQuote extends AbstractModel implements NegotiableQuoteInterface
     private $dateTime;
 
     /**
-     * NegotiableQuote constructor.
+     * @param \Magento\Framework\Stdlib\DateTime $dateTime
      * @param Context $context
      * @param \Magento\Framework\Registry $registry
      * @param AbstractResource|null $resource
      * @param AbstractDb|null $resourceCollection
-     * @param \Magento\Framework\Stdlib\DateTime $dateTime
      * @param array $data
      */
     public function __construct(
@@ -72,6 +71,8 @@ class NegotiableQuote extends AbstractModel implements NegotiableQuoteInterface
     }
 
     /**
+     * Get quote id.
+     *
      * @return int
      */
     public function getQuoteId()
@@ -80,17 +81,20 @@ class NegotiableQuote extends AbstractModel implements NegotiableQuoteInterface
     }
 
     /**
-     * @param $quoteId
+     * Set quote id.
+     *
+     * @param int $quoteId
      * @return $this
      */
     public function setQuoteId($quoteId)
     {
-
         $this->setData(self::QUOTE_ID, $quoteId);
         return $this;
     }
 
     /**
+     * Get website id.
+     *
      * @return int
      */
     public function getWebsiteId()
@@ -99,7 +103,9 @@ class NegotiableQuote extends AbstractModel implements NegotiableQuoteInterface
     }
 
     /**
-     * @param $websiteId
+     * Set website id.
+     *
+     * @param int $websiteId
      * @return $this
      */
     public function setWebsiteId($websiteId)
@@ -109,6 +115,8 @@ class NegotiableQuote extends AbstractModel implements NegotiableQuoteInterface
     }
 
     /**
+     * Get quote imported.
+     *
      * @return bool
      */
     public function getQuoteImported()
@@ -117,6 +125,8 @@ class NegotiableQuote extends AbstractModel implements NegotiableQuoteInterface
     }
 
     /**
+     * Get expiration date.
+     *
      * @return mixed
      */
     public function getExpirationDate()
@@ -125,7 +135,9 @@ class NegotiableQuote extends AbstractModel implements NegotiableQuoteInterface
     }
 
     /**
-     * @param $imported
+     * Set quote imported.
+     *
+     * @param bool $imported
      * @return $this
      */
     public function setQuoteImported($imported)
@@ -135,7 +147,9 @@ class NegotiableQuote extends AbstractModel implements NegotiableQuoteInterface
     }
 
     /**
-     * @param $expirationDate
+     * Set expiration date.
+     *
+     * @param string $expirationDate
      * @return $this
      */
     public function setExpirationDate($expirationDate)

@@ -33,6 +33,8 @@ class SharedCatalogCompanyAssignPlugin
     }
 
     /**
+     * After execute.
+     *
      * @param Assign $assign
      * @param Json $result
      * @return Json

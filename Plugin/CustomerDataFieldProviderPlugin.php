@@ -21,6 +21,8 @@ class CustomerDataFieldProviderPlugin
     }
 
     /**
+     * After get additional data fields.
+     *
      * @param CustomerDataFieldProvider $customerDataFieldProvider
      * @param array $result
      * @return array

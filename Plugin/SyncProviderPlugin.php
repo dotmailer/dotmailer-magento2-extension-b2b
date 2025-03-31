@@ -21,6 +21,8 @@ class SyncProviderPlugin
     }
 
     /**
+     * Before get available syncs.
+     *
      * @param SyncProvider $syncProvider
      * @param array $additionalSyncs
      * @return array

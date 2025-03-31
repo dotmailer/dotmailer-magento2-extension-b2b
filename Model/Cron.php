@@ -40,6 +40,8 @@ class Cron
     }
 
     /**
+     * Sync negotiable quotes.
+     *
      * @return void
      */
     public function syncNegotiableQuotes()
@@ -53,6 +55,8 @@ class Cron
     }
 
     /**
+     * Check if the job has already been run.
+     *
      * @param string $jobCode
      * @return bool
      */
