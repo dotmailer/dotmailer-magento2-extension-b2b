@@ -98,7 +98,11 @@ class StoreCatalogSyncerPlugin
                 continue;
             }
 
-            $products = $this->exporter->exportCatalog($storeId, $productsToProcessFromCatalog);
+            $products = $this->exporter->exportCatalog(
+                $storeId,
+                $productsToProcessFromCatalog,
+                (int) $catalog['customer_group_id']
+            );
 
             if ($products) {
                 $cleanSharedCatalogName = $this->validator->cleanLabel($catalog['name'], '_');

@@ -6,10 +6,10 @@
 This module is dedicated to Magento merchants that also sell to other businesses. You may be running a B2B model only or hybrid model B2B/B2C, but as long as you’re using the **B2B for Adobe Commerce** module, you can benefit from this separate B2B extension and put all your B2B data to work with Dotdigital.
   
 ## Requirements
-- Requires Magento 2.3+
+- Requires Magento 2.3.7+
 - Requires `magento/module-b2b`
 - Requires Dotdigital extension versions:
-  - `Dotdigitalgroup_Email` 4.22.0+
+  - `Dotdigitalgroup_Email` 4.32.0+
   - `Dotdigitalgroup_Enterprise` 1.10.0+ (if used)
 
 ## Installation
@@ -30,6 +30,11 @@ composer require dotdigital/dotdigital-magento2-extension-b2b
 - Enable Shared Catalog and B2B Quote in **General > B2B Features** to use the related syncs.
 
 ## Changelog
+
+### 1.9.0
+
+##### What's new
+- The `TierPriceFinderPlugin` is removed. Tier prices are now exported and synced via the Dotdigitalgroup_Email module.
 
 ### 1.8.5
 
